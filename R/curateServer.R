@@ -1,5 +1,5 @@
 ## server side utils
-
+library(shinyWidgets)
 # for additional info adding 
 firsthalfUI <- fluidRow(
   br(),

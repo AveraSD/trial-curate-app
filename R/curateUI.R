@@ -1,5 +1,6 @@
 ## ui side utils
-
+library(reactable)
+library(shinyWidgets)
 ##### Panel 1: NCT ID + query trial
 input_form <- fluidRow(
   
