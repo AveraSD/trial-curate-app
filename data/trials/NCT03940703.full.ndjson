@@ -1,0 +1,77 @@
+[
+  {
+    "info": {
+      "NCT": "NCT03940703",
+      "jit": "Tempus",
+      "trial_name": "EMDs"
+    },
+    "disease": {
+      "summary": " Non-small Cell Lung Cancer",
+      "details": [
+        {
+          "code": "Non-Small Cell Lung Cancer (NSCLC)",
+          "selection": "include"
+        }
+      ]
+    },
+    "query": {
+      "nct": "NCT03940703",
+      "title": "A Study of Tepotinib Plus Osimertinib in Osimertinib Relapsed MET Amplified NSCLC (INSIGHT 2)",
+      "current_status": "Recruiting",
+      "status_verif_date": "July 2022",
+      "last_update_date": "August 3, 2022",
+      "trial_hold_status": "open",
+      "sponsor": "EMD Serono Research & Development Institute, Inc.",
+      "brief_summary": "This study will assess the antitumor activity, safety, tolerability, and pharmacokinetics (PK) of the Mesenchymal-epithelial Transition Factor (MET) inhibitor tepotinib combined with the 3rd generation EGFR inhibitor osimertinib in participants with advanced or metastatic non-small cell lung cancer (NSCLC).",
+      "conditions": "Non-small Cell Lung Cancer",
+      "type": "Interventional",
+      "phase": "Phase 2",
+      "arm": [
+        {
+          "ArmID": "1",
+          "cohortlabel": "Tepotinib and Osimertinib",
+          "drug": "Tepotinib | Osimertinib",
+          "arm_type": "Experimental",
+          "line_of_therapy": "Not available",
+          "arm_hold_status": "open",
+          "biomarker": [
+            {
+              "cohort": "Tepotinib and Osimertinib",
+              "Gene": "MET",
+              "Gene2": "Not available",
+              "Type": "Amplification",
+              "Variant": "Not available",
+              "Selection": "include",
+              "Function": "Not available",
+              "summary": "MET Amplification  "
+            }
+          ]
+        },
+        {
+          "ArmID": "2",
+          "cohortlabel": "Tepotinib Mono-therapy",
+          "drug": "Tepotinib | NA",
+          "arm_type": "Experimental",
+          "line_of_therapy": "Not available",
+          "arm_hold_status": "open",
+          "biomarker": [
+            {
+              "cohort": "Tepotinib Mono-therapy",
+              "Gene": "MET",
+              "Gene2": "Not available",
+              "Type": "Amplification",
+              "Variant": "Not available",
+              "Selection": "include",
+              "Function": "Not available",
+              "summary": "MET Amplification  "
+            }
+          ]
+        }
+      ],
+      "docs": "SDSADFSAF",
+      "min_age": "18 Years",
+      "gender": "All",
+      "link": "<a href=\"https://clinicaltrials.gov/ct2/show/NCT03940703\" target=\"_blank\">NCT03940703<\/a>"
+    }
+  }
+]
