@@ -2,10 +2,8 @@
 
 <br/>
 
-This repo contains 2 Shiny apps: 
+This repo contains Curate Shiny apps: 
     
-(i) BROWSE - to browse all available clinical trials at ACI and match patients to trials
-
 (ii) CURATE - to add information about trials to our database to be used 
 
 <br/>
