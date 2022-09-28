@@ -17,6 +17,7 @@ library(data.table)
 library(dplyr)
 library(here)
 
+library(fs)
 # NCT03037385
 
 # source necessary files
@@ -183,8 +184,13 @@ server <- function(input, output, session) {
     lastInput <- allInputDise[allInputDise != "NA"]
     lenlast <- length(lastInput)
     
+    # addDisBtn <- tibble(code = lastInput[lenlast], 
+    #                     selection = input$certir)
+    
+    #Adding stage information for disease
     addDisBtn <- tibble(code = lastInput[lenlast], 
-                        selection = input$certir)
+                        selection = input$certir,
+                        stage = input$stage)
     
     disAd$indisAd <- disAd$indisAd %>% bind_rows(addDisBtn)
     output$dt_dise <- renderDT({
@@ -444,7 +450,34 @@ server <- function(input, output, session) {
   # Open the Document Tab and display the UI on Update
   observeEvent(input$bioMrk,{
     updateTabsetPanel(session, "inNav", selected = "Documents")
+    
+    # output$doc_link <- renderText({input$doc})
+    
+    
+     
+    #  volumes <- c(Home = fs::path_home(), "R Installation" = R.home(), getVolumes()())
+    #  shinyFileChoose(input, "file", roots = volumes, session = session)
+    #  
+    # observe({
+    #   cat("\ninput$file value:\n\n")
+    #   print(input$file)
+    # })
+
+    
+    # ## print to browser
+    # file <- reactive(input$file)
+    # output$filepaths <- renderText({
+    #    as.character(parseFilePaths(volumes, file())$datapath)
+    #      })
+    output$doc_link <- renderText({
+      as.character(parseFilePaths(volumes, file())$datapath)
+    })
+    
     output$doc_link <- renderText({input$doc})
+    
+    #added document last updated date
+    output$dt_link <- renderText({paste("Last Updated:", input$dt)})
+    
     output$DisDoc <- renderUI({
       docuOut 
     })
@@ -524,6 +557,7 @@ server <- function(input, output, session) {
     # final tibble to display  
     disBrw2 <<- tibble(
       info = tibble(NCT = input$info_NCT,
+                    Protocol_No = input$ProtocolNo,
                     jit = input$info_jit,
                     trial_name = input$info_trial_name
       ),
@@ -549,6 +583,7 @@ server <- function(input, output, session) {
                      #   docs = glue("<a href=\\", input$doc, "\\", "target=\"_blank\">site-documentation</a>")
                      # },
                      docs = input$doc,
+                     doclastupdate = input$dt,
                      min_age = infoDis$min_age,
                      gender = infoDis$gender,
                      link = infoDis$link

@@ -1,6 +1,7 @@
 ## ui side utils
 library(reactable)
 library(shinyWidgets)
+library(shinyFiles)
 ##### Panel 1: NCT ID + query trial
 input_form <- fluidRow(
   
@@ -11,12 +12,15 @@ input_form <- fluidRow(
              textInput("info_NCT", 
                        "1. NCT Trial ID")),
       column(4, 
+             textInput("ProtocolNo", 
+                       "2. Protocol Number")),
+      column(4, 
              selectInput("info_jit", 
-                         "2. Just in time trial offered by", 
+                         "3. Just in time trial offered by", 
                          c("Tempus", "Caris", "Optimal", "Not JIT","Optimal & Tempus","Tempus & Caris"))),
       column(4, 
              textInput("info_trial_name", 
-                       "3. Name of the trial")),
+                       "4. Name of the trial")),
       br()
     ),
     
@@ -86,6 +90,14 @@ secondhalfUI <- fluidPage(
     h6("3. Please choose each disease you wish to record (choose levels according to Oncotree with as much detail as possible)"),
     br(),
     
+    
+    
+    
+    
+    
+    
+    
+    br(),
     radioGroupButtons(
       inputId = "certir",
       choices = c("include", 
@@ -121,8 +133,22 @@ secondhalfUI <- fluidPage(
         )
       ),
       
-      actionButton(inputId = "addDis",label = "ADD")
+      
+    
+    checkboxGroupInput(
+      inputId = "stage", label= "Disease Stage",
+      choices = c("Methylated", 
+                  "Unmethylated","Advanced Stage / Metastatic","Recurrent","Stage I/II/III resectable","Stage I/II/III resectable",
+                  "Stage I/II/III Un-resectable","Stage I / II, stage III/IV","Early stage", "New diagnosis","Relapsed/Refractory", "Post Cellular Therapy",
+                  "Smoldering Myeloma")
+     # justified = F
     ),
+    br(),
+    br(),
+    actionButton(inputId = "addDis",label = "ADD")
+    ),
+    
+    
     
     # display chosen disease
     br(),
@@ -194,7 +220,7 @@ biom_display <- fluidPage(
 
   # TABLE A to show LoT and Status
   div(style = "margin-top: 30px;"),
-  h5(strong("A: Cohort level line of therapy and recruitement status")),
+  h5(strong("A: Cohort level line of therapy and recruitment status")),
   # add clear button arm info
   
   div(
@@ -280,11 +306,29 @@ docuOut <- fluidPage(
   br(),
 
   # add link to trial documentation
-  textInput(inputId = "doc", 
-            label = "Please add link to (site) trial documentation"),
+   textInput(inputId = "doc", 
+             label = "Please add link to (site) trial documentation"),
+   br(),
+  
+   h5("Link added: "), 
+   textOutput("doc_link"),
+  
+  # shinyFilesButton("file", "File select", "Please select a file", multiple = TRUE, viewtype = "detail"),
+  # # verbatimTextOutput("filepaths"),
+  # verbatimTextOutput("doc_link"),
+  #added last update date for documentation
   br(),
-  h5("Link added: "), 
-  textOutput("doc_link")
+  
+  # add  documentation date
+  dateInput(inputId = "dt", 
+             label = "Document last updated"),
+  
+  
+  
+  br(),
+   
+  textOutput("dt_link")
+  ####
 )
 
 ##### Panel 5: View Trial
