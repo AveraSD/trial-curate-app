@@ -284,7 +284,11 @@ server <- function(input, output, session) {
     
     #disAd$armDfInfo <- inner_join(disAd$armDfInfo, dt_row, by = "cohortlabel")
     output$dt_table_arm_display <- renderDT({
-      datatable(disAd$armDfInfo, 
+      Armpt1Tb_out=disAd$armDfInfo %>% group_by(armID,cohortlabel,armStatus) %>% 
+        summarise(
+          lineTx = paste0(lineTx,collapse = ";")
+        )
+      datatable(Armpt1Tb_out, 
                 rownames = F,
                 options = list(dom = 't'))
     })
@@ -309,7 +313,11 @@ server <- function(input, output, session) {
       disAd$armDfInfo <- disAd$armDfInfo %>% bind_rows(dt_rowall) %>% distinct()
     }
     output$dt_table_arm_display <- renderDT({
-      datatable(disAd$armDfInfo, 
+      Armpt1Tb_out=disAd$armDfInfo %>% group_by(armID,cohortlabel,armStatus) %>% 
+        summarise(
+          lineTx = paste0(lineTx,collapse = ";")
+        )
+      datatable(Armpt1Tb_out, 
                 rownames = FALSE,
                 colnames = c('Arm #' = 'armID',
                              'Cohort' = 'cohortlabel'),

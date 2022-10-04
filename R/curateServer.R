@@ -61,8 +61,8 @@ modal_arminfo <- function(lineTx, armStatus) {
           inputId = "lineTx",
           label = "Line of Therapy",
           #choices = c("Not available", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-          choices = c("Not available", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "Neoadjuvant","Adjuvant", "Maintenance", "> 3 lines of prior treatment", "Recurrent","Registry", "Surgical", "Sequencing"),
-          multiple = F,
+          choices = c("Not available", 1, 2, 3, "3+", "Neoadjuvant","Adjuvant", "Maintenance", "> 3 lines of prior treatment", "Recurrent","Registry", "Surgical", "Sequencing"),
+          multiple = T,
           width = "200px"
         )
       ),
