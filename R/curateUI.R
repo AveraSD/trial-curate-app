@@ -12,7 +12,7 @@ input_form <- fluidRow(
              textInput("info_NCT", 
                        "1. NCT Trial ID")),
       column(4, 
-             textInput("ProtocolNo", 
+             textInput("info_protNo", 
                        "2. Protocol Number")),
       column(4, 
              selectInput("info_jit", 
@@ -91,12 +91,6 @@ secondhalfUI <- fluidPage(
     br(),
     
     
-    
-    
-    
-    
-    
-    
     br(),
     radioGroupButtons(
       inputId = "certir",
@@ -132,17 +126,13 @@ secondhalfUI <- fluidPage(
                selectInput("lev7", "Level7", choices = "", selected = "")
         )
       ),
-      
-      
-    
-    checkboxGroupInput(
-      inputId = "stage", label= "Disease Stage",
-      choices = c("Methylated", 
-                  "Unmethylated","Advanced Stage / Metastatic","Recurrent","Stage I/II/III resectable","Stage I/II/III resectable",
-                  "Stage I/II/III Un-resectable","Stage I / II, stage III/IV","Early stage", "New diagnosis","Relapsed/Refractory", "Post Cellular Therapy",
-                  "Smoldering Myeloma")
-     # justified = F
-    ),
+      fluidRow(checkboxGroupInput(
+        inputId = "levl_stage", label= "Disease Stage",
+        choices = c("Stage I","Stage II","Stage III","Stage IV","Methylated","Un-resectable","resectable",
+                    "Unmethylated","Advanced Stage","Recurrent","Metastatic","Early stage", "New diagnosis","Relapsed/Refractory","Post Cellular Therapy",
+                    "Smoldering Myeloma"),inline = T,selected = NULL)
+        
+      ),
     br(),
     br(),
     actionButton(inputId = "addDis",label = "ADD")

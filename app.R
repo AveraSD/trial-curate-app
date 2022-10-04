@@ -190,11 +190,15 @@ server <- function(input, output, session) {
     #Adding stage information for disease
     addDisBtn <- tibble(code = lastInput[lenlast], 
                         selection = input$certir,
-                        stage = input$stage)
+                        stage = as.character(input$levl_stage))
     
     disAd$indisAd <- disAd$indisAd %>% bind_rows(addDisBtn)
     output$dt_dise <- renderDT({
-      datatable(disAd$indisAd, 
+      disTb_out=disAd$indisAd %>% group_by(code,selection) %>% 
+        summarise(
+          stage = paste0(stage,collapse = ";")
+        )
+      datatable(disTb_out, 
                 filter = 'none', 
                 selection = 'none', 
                 options = list(dom = 't'))
