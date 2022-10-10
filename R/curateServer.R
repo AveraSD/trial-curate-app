@@ -16,6 +16,7 @@ disAd <- reactiveValues(
   indisAd = tibble(), # disease  
   armDf = tibble(), # cohort 
   armDfInfo = tibble(), # cohort + arm info
+  Armpt1Tb_out = tibble(), # mergered cohort + arm info
   dfAdd = tibble(), # cohort + biomarker
   add_or_edit = NULL,  # confirming the button selection
   add_or_edit_arminfo = NULL, 

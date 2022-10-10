@@ -294,6 +294,9 @@ docuOut <- fluidPage(
          actionButton("move_brow", "Move to Browser",class="btn-warning")),
   br(),
   br(),
+  
+  # selection of the file type 
+  radioButtons("doc_fileType",label = "Select File type for the Documentation: ",choices = c("Flat File", "Sharepoint Link"),selected = NULL,inline = T),
 
   # add link to trial documentation
    textInput(inputId = "doc", 
@@ -308,15 +311,11 @@ docuOut <- fluidPage(
   # verbatimTextOutput("doc_link"),
   #added last update date for documentation
   br(),
-  
   # add  documentation date
   dateInput(inputId = "dt", 
              label = "Document last updated"),
   
-  
-  
   br(),
-   
   textOutput("dt_link")
   ####
 )
