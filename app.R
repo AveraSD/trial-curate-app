@@ -642,7 +642,8 @@ server <- function(input, output, session) {
                                       unnest(arm) %>%
                                       select(-cohortlabel) %>%
                                       unnest(biomarker) %>%
-                                      select(-c(ArmID, line_of_therapy, arm_hold_status))
+                                      select(-c(ArmID))
+                                    #line_of_therapy, arm_hold_status
                                     
                                     tab_disease <- disBrw2$disease %>% unnest(details)
                                     # tab_disease <- disBrw2 %>%
