@@ -201,6 +201,7 @@ server <- function(input, output, session) {
       datatable(disTb_out, 
                 filter = 'none', 
                 selection = 'none', 
+             #   editable = TRUE,
                 options = list(dom = 't'))
     })
   })
@@ -236,6 +237,7 @@ server <- function(input, output, session) {
               escape = F,
               selection ='single',
               rownames = FALSE,
+              #editable = TRUE,
               colnames = c('Arm #' = 'ArmID',
                            'Cohort(s)' = 'cohortlabel',
                            'Drugs(s)' = 'drug',
@@ -480,10 +482,10 @@ server <- function(input, output, session) {
     # output$filepaths <- renderText({
     #    as.character(parseFilePaths(volumes, file())$datapath)
     #      })
-    output$doc_link <- renderText({
-      as.character(parseFilePaths(volumes, file())$datapath)
-    })
-    
+    # output$doc_link <- renderText({
+    #   as.character(parseFilePaths(volumes, file())$datapath)
+    # })
+    # 
     output$doc_link <- renderText({input$doc})
     
     #added document last updated date
@@ -494,16 +496,30 @@ server <- function(input, output, session) {
     })
   })
   
-  docInput = eventReactive(input$doc_fileType,{
-    if(input$doc_fileType == "Flat File") {
-        docs = input$doc
-      } else
-      {
-        tagvar = tags$a(href=input$doc,)
-        docs = as.character(tagvar)
-      }
-    print(docs)
-  })
+  # docInput = eventReactive(input$doc_fileType,{
+  #   if(input$doc_fileType == "Flat File") {
+  #       docs = input$doc
+  #     } else
+  #     {
+  #       tagvar = tags$a(href=input$doc,)
+  #       docs = as.character(tagvar)
+  #     }
+  #   print(docs)
+  # })
+  
+  #  eventReactive(input$doc_fileType,{
+  #    output$doc_link<- if(input$doc_fileType == "JIT link") {
+  # #     # docs = input$doc
+  #     docs = HTML(paste(a("JIT link",href=input$doc)))
+  #   } else
+  #   {
+  #     # tagvar = tags$a(href=input$doc,)
+  #     # docs = as.character(tagvar)
+  #     docs = HTML(paste(a("Avera Sharept",href=input$doc)))
+  #   }
+  #   print(docs)
+  # })
+  
   # docs = if(input$doc_fileType == "Flat File") {
   #   docs = input$doc
   # } else
@@ -587,7 +603,7 @@ server <- function(input, output, session) {
     # final tibble to display  
     disBrw2 <<- tibble(
       info = tibble(NCT = input$info_NCT,
-                    Protocol_No = input$ProtocolNo,
+                    Protocol_No = input$info_protNo,
                     jit = input$info_jit,
                     trial_name = input$info_trial_name
       ),
@@ -606,13 +622,13 @@ server <- function(input, output, session) {
                      type = infoDis$type,
                      phase = infoDis$phase,
                      arm = list(armForBioMk),
-                     # docs = if(input$doc_fileType == "Flat File") {
-                     #   docs = input$doc
-                     # } else
-                     # {
+                      # docs = if(input$doc_fileType == "Flat File") {
+                      #   docs = HTML(paste(a("File link",href=input$doc)))
+                      # } else
+                      # {
                      #   tagvar = tags$a(href=input$doc,)
-                     #   docs = tagvar
-                     # },
+                        docs = HTML(paste(a("Link",href=input$doc))),
+                      # },
                      #docs = docInput,
                      doclastupdate = input$dt,
                      min_age = infoDis$min_age,
