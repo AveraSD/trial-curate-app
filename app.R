@@ -455,62 +455,17 @@ server <- function(input, output, session) {
     shiny::removeModal()
   })
   
-  
-  
   ##### Panel 4: Documentation 
   # Open the Document Tab and display the UI on Update
   observeEvent(input$bioMrk,{
     updateTabsetPanel(session, "inNav", selected = "Documents")
-    
-    # output$doc_link <- renderText({input$doc})
-    
-    
-     
-    #  volumes <- c(Home = fs::path_home(), "R Installation" = R.home(), getVolumes()())
-    #  shinyFileChoose(input, "file", roots = volumes, session = session)
-    #  
-    # observe({
-    #   cat("\ninput$file value:\n\n")
-    #   print(input$file)
-    # })
-
-    
-    # ## print to browser
-    # file <- reactive(input$file)
-    # output$filepaths <- renderText({
-    #    as.character(parseFilePaths(volumes, file())$datapath)
-    #      })
-    output$doc_link <- renderText({
-      as.character(parseFilePaths(volumes, file())$datapath)
-    })
-    
-    output$doc_link <- renderText({input$doc})
-    
-    #added document last updated date
-    output$dt_link <- renderText({paste("Last Updated:", input$dt)})
-    
     output$DisDoc <- renderUI({
       docuOut 
     })
+    output$doc_link <- renderText({input$doc})
+    #output$dt_link <- renderText({paste("Last Updated:", input$dt)})
+    
   })
-  
-  docInput = eventReactive(input$doc_fileType,{
-    if(input$doc_fileType == "Flat File") {
-        docs = input$doc
-      } else
-      {
-        tagvar = tags$a(href=input$doc,)
-        docs = as.character(tagvar)
-      }
-    print(docs)
-  })
-  # docs = if(input$doc_fileType == "Flat File") {
-  #   docs = input$doc
-  # } else
-  # {
-  #   tagvar = tags$a(href=input$doc,)
-  #   docs = tagvar
-  # },
   
   
   ##### Panel 5: View Trial
@@ -613,8 +568,9 @@ server <- function(input, output, session) {
                      #   tagvar = tags$a(href=input$doc,)
                      #   docs = tagvar
                      # },
-                     #docs = docInput,
+                     docs = input$doc,
                      doclastupdate = input$dt,
+                     location = input$loct,
                      min_age = infoDis$min_age,
                      gender = infoDis$gender,
                      link = infoDis$link

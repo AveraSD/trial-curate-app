@@ -3,14 +3,20 @@
     "info": {
       "NCT": "NCT03037385",
       "jit": "Tempus",
-      "trial_name": "sxads"
+      "trial_name": "test1"
     },
     "disease": {
-      "summary": "sdfsefsdf",
+      "summary": "Non Small Cell Lung Cancer | Medullary Thyroid Cancer | RET-altered Papillary Thyroid Cancer | RET-altered Colon Cancer ",
       "details": [
         {
-          "code": "Adrenal Gland (ADRENAL_GLAND)",
-          "selection": "include"
+          "code": "Colorectal Adenocarcinoma (COADREAD)",
+          "selection": "include",
+          "stage": "resectable"
+        },
+        {
+          "code": "Non-Small Cell Lung Cancer (NSCLC)",
+          "selection": "include",
+          "stage": "Advanced Stage;Metastatic"
         }
       ]
     },
@@ -18,8 +24,8 @@
       "nct": "NCT03037385",
       "title": "Phase 1/2 Study of the Highly-selective RET Inhibitor, Pralsetinib (BLU-667), in Participants With Thyroid Cancer, Non-Small Cell Lung Cancer, and Other Advanced Solid Tumors",
       "current_status": "Active, not recruiting",
-      "status_verif_date": "July 2022",
-      "last_update_date": "July 8, 2022",
+      "status_verif_date": "November 2022",
+      "last_update_date": "November 10, 2022",
       "trial_hold_status": "open",
       "sponsor": "Hoffmann-La Roche",
       "brief_summary": "This is a Phase 1/2, open-label, first-in-human (FIH) study designed to evaluate the safety, tolerability, pharmacokinetics (PK), pharmacodynamics (PD), and preliminary antineoplastic activity of pralsetinib (BLU-667) administered orally in participants with medullary thyroid cancer (MTC), RET-altered NSCLC and other RET-altered solid tumors.",
@@ -32,18 +38,18 @@
           "cohortlabel": "Phase 1 Dose Escalation",
           "drug": "pralsetinib (BLU-667)",
           "arm_type": "Experimental",
-          "line_of_therapy": "3",
-          "arm_hold_status": "Not available",
+          "line_of_therapy": "3+",
+          "arm_hold_status": "open",
           "biomarker": [
             {
               "cohort": "Phase 1 Dose Escalation",
-              "Gene": "ABL2",
-              "Gene2": "AKT1",
-              "Type": "Fusion",
+              "Gene": "ACVR1B",
+              "Gene2": "Not available",
+              "Type": "Alteration",
               "Variant": "Not available",
               "Selection": "include",
-              "Function": "Not available",
-		"summary": "ABL2-AKT1 Fusion"
+              "Function": "positive",
+              "summary": "ACVR1B Alteration positive  "
             }
           ]
         },
@@ -52,14 +58,25 @@
           "cohortlabel": "Phase 2 Dose Expansion",
           "drug": "pralsetinib (BLU-667)",
           "arm_type": "Experimental",
-          "line_of_therapy": "3",
-          "arm_hold_status": "Not available",
+          "line_of_therapy": "3+",
+          "arm_hold_status": "open",
           "biomarker": [
-            {}
+            {
+              "cohort": "Phase 2 Dose Expansion",
+              "Gene": "ACVR1B",
+              "Gene2": "Not available",
+              "Type": "Alteration",
+              "Variant": "Not available",
+              "Selection": "include",
+              "Function": "positive",
+              "summary": "ACVR1B Alteration positive  "
+            }
           ]
         }
       ],
-      "docs": "<a href=\\dafffffff\\target=\"_blank\">site-documentation<\/a>",
+      "docs": "https://clinicaltrials.gov/ct2/show/NCT03037385?term=NCT03037385&draw=2&rank=1",
+      "doclastupdate": "2023-01-11",
+      "location": "Sioux Fall SD",
       "min_age": "18 Years",
       "gender": "All",
       "link": "<a href=\"https://clinicaltrials.gov/ct2/show/NCT03037385\" target=\"_blank\">NCT03037385<\/a>"
