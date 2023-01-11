@@ -73,9 +73,14 @@ secondhalfUI <- fluidPage(
 
     ### Hold status for the trial at the site 
     br(),
-    column(3, selectInput("trHold", 
+    column(3, selectInput("trHold",
                           "1. Please choose the trial status for the site:",
+<<<<<<< HEAD
                           choices = c("open", "on hold", "closed","coming soon"))),
+=======
+                          choices = c("open", "on hold", "closed", "coming soon"))),
+    
+>>>>>>> e1ed9b389d9d756d850d5d7a7441457427fc5473
     column(9, textInput("disSum", 
                         "2. Please enter an overall disease summary")),
     br(),
@@ -129,7 +134,7 @@ secondhalfUI <- fluidPage(
       fluidRow(checkboxGroupInput(
         inputId = "levl_stage", label= "Disease Stage",
         choices = c("Stage I","Stage II","Stage III","Stage IV","Methylated","Un-resectable","resectable",
-                    "Unmethylated","Advanced Stage","Recurrent","Metastatic","Early stage", "New diagnosis","Relapsed/Refractory","Post Cellular Therapy",
+                    "Unmethylated","Advanced Stage","Recurrent","Metastatic","Early stage", "New diagnosis","Neoplasms","Relapsed/Refractory","Post Cellular Therapy",
                     "Smoldering Myeloma"),inline = T,selected = NULL)
         
       ),
@@ -295,12 +300,32 @@ docuOut <- fluidPage(
          actionButton("move_brow", "Move to Browser",class="btn-warning")),
   br(),
   br(),
+<<<<<<< HEAD
   wellPanel(
     column(4,
            # add link to trial documentation
            textInput(inputId = "doc", label = "Please add link to (site) trial documentation")),
     column(6,  h5("Link added: "), textOutput("doc_link"))
     ),
+=======
+  
+  # selection of the documentation type 
+   # radioButtons("doc_fileType",label = "Select File type for the link to Documentation: ",choices = c("JIT Link", "SharePoint Link"),selected = NULL,inline = T),
+
+  # add link to trial documentation
+   textInput(inputId = "doc", 
+             label = "Please add link to (site) trial documentation"),
+   br(),
+  
+   h5("Link added: "), 
+  br(),
+  textOutput("doc_link"),
+  # uiOutput("doc_link"),
+  
+  # shinyFilesButton("file", "File select", "Please select a file", multiple = TRUE, viewtype = "detail"),
+  # # verbatimTextOutput("filepaths"),
+  # verbatimTextOutput("doc_link"),
+>>>>>>> e1ed9b389d9d756d850d5d7a7441457427fc5473
   #added last update date for documentation
   br(),
   br(),

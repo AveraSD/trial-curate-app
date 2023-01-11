@@ -201,6 +201,7 @@ server <- function(input, output, session) {
       datatable(disTb_out, 
                 filter = 'none', 
                 selection = 'none', 
+             #   editable = TRUE,
                 options = list(dom = 't'))
     })
   })
@@ -236,6 +237,7 @@ server <- function(input, output, session) {
               escape = F,
               selection ='single',
               rownames = FALSE,
+              #editable = TRUE,
               colnames = c('Arm #' = 'ArmID',
                            'Cohort(s)' = 'cohortlabel',
                            'Drugs(s)' = 'drug',
@@ -459,6 +461,37 @@ server <- function(input, output, session) {
   # Open the Document Tab and display the UI on Update
   observeEvent(input$bioMrk,{
     updateTabsetPanel(session, "inNav", selected = "Documents")
+<<<<<<< HEAD
+=======
+    
+    # output$doc_link <- renderText({input$doc})
+    
+    
+     
+    #  volumes <- c(Home = fs::path_home(), "R Installation" = R.home(), getVolumes()())
+    #  shinyFileChoose(input, "file", roots = volumes, session = session)
+    #  
+    # observe({
+    #   cat("\ninput$file value:\n\n")
+    #   print(input$file)
+    # })
+
+    
+    # ## print to browser
+    # file <- reactive(input$file)
+    # output$filepaths <- renderText({
+    #    as.character(parseFilePaths(volumes, file())$datapath)
+    #      })
+    # output$doc_link <- renderText({
+    #   as.character(parseFilePaths(volumes, file())$datapath)
+    # })
+    # 
+    output$doc_link <- renderText({input$doc})
+    
+    #added document last updated date
+    output$dt_link <- renderText({paste("Last Updated:", input$dt)})
+    
+>>>>>>> e1ed9b389d9d756d850d5d7a7441457427fc5473
     output$DisDoc <- renderUI({
       docuOut 
     })
@@ -467,6 +500,41 @@ server <- function(input, output, session) {
     
   })
   
+<<<<<<< HEAD
+=======
+  # docInput = eventReactive(input$doc_fileType,{
+  #   if(input$doc_fileType == "Flat File") {
+  #       docs = input$doc
+  #     } else
+  #     {
+  #       tagvar = tags$a(href=input$doc,)
+  #       docs = as.character(tagvar)
+  #     }
+  #   print(docs)
+  # })
+  
+  #  eventReactive(input$doc_fileType,{
+  #    output$doc_link<- if(input$doc_fileType == "JIT link") {
+  # #     # docs = input$doc
+  #     docs = HTML(paste(a("JIT link",href=input$doc)))
+  #   } else
+  #   {
+  #     # tagvar = tags$a(href=input$doc,)
+  #     # docs = as.character(tagvar)
+  #     docs = HTML(paste(a("Avera Sharept",href=input$doc)))
+  #   }
+  #   print(docs)
+  # })
+  
+  # docs = if(input$doc_fileType == "Flat File") {
+  #   docs = input$doc
+  # } else
+  # {
+  #   tagvar = tags$a(href=input$doc,)
+  #   docs = tagvar
+  # },
+  
+>>>>>>> e1ed9b389d9d756d850d5d7a7441457427fc5473
   
   ##### Panel 5: View Trial
   observeEvent(input$move_brow,{
@@ -542,7 +610,7 @@ server <- function(input, output, session) {
     # final tibble to display  
     disBrw2 <<- tibble(
       info = tibble(NCT = input$info_NCT,
-                    Protocol_No = input$ProtocolNo,
+                    Protocol_No = input$info_protNo,
                     jit = input$info_jit,
                     trial_name = input$info_trial_name
       ),
@@ -561,14 +629,20 @@ server <- function(input, output, session) {
                      type = infoDis$type,
                      phase = infoDis$phase,
                      arm = list(armForBioMk),
-                     # docs = if(input$doc_fileType == "Flat File") {
-                     #   docs = input$doc
-                     # } else
-                     # {
+                      # docs = if(input$doc_fileType == "Flat File") {
+                      #   docs = HTML(paste(a("File link",href=input$doc)))
+                      # } else
+                      # {
                      #   tagvar = tags$a(href=input$doc,)
+<<<<<<< HEAD
                      #   docs = tagvar
                      # },
                      docs = input$doc,
+=======
+                        docs = HTML(paste(a("Link",href=input$doc))),
+                      # },
+                     #docs = docInput,
+>>>>>>> e1ed9b389d9d756d850d5d7a7441457427fc5473
                      doclastupdate = input$dt,
                      location = input$loct,
                      min_age = infoDis$min_age,
