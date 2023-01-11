@@ -2,21 +2,17 @@
   {
     "info": {
       "NCT": "NCT03037385",
+      "Protocol_No": "dsfffg",
       "jit": "Tempus",
-      "trial_name": "test1"
+      "trial_name": "erfew"
     },
     "disease": {
-      "summary": "Non Small Cell Lung Cancer | Medullary Thyroid Cancer | RET-altered Papillary Thyroid Cancer | RET-altered Colon Cancer ",
+      "summary": "te4terter",
       "details": [
         {
-          "code": "Colorectal Adenocarcinoma (COADREAD)",
+          "code": "Adrenal Gland (ADRENAL_GLAND)",
           "selection": "include",
-          "stage": "resectable"
-        },
-        {
-          "code": "Non-Small Cell Lung Cancer (NSCLC)",
-          "selection": "include",
-          "stage": "Advanced Stage;Metastatic"
+          "stage": "Stage IV"
         }
       ]
     },
@@ -38,18 +34,18 @@
           "cohortlabel": "Phase 1 Dose Escalation",
           "drug": "pralsetinib (BLU-667)",
           "arm_type": "Experimental",
-          "line_of_therapy": "3+",
-          "arm_hold_status": "open",
+          "line_of_therapy": "3",
+          "arm_hold_status": "on hold",
           "biomarker": [
             {
               "cohort": "Phase 1 Dose Escalation",
               "Gene": "ACVR1B",
               "Gene2": "Not available",
-              "Type": "Alteration",
+              "Type": "Frame Shift mut",
               "Variant": "Not available",
               "Selection": "include",
-              "Function": "positive",
-              "summary": "ACVR1B Alteration positive  "
+              "Function": "Loss",
+              "summary": "ACVR1B Frame Shift mut Loss  "
             }
           ]
         },
@@ -58,25 +54,25 @@
           "cohortlabel": "Phase 2 Dose Expansion",
           "drug": "pralsetinib (BLU-667)",
           "arm_type": "Experimental",
-          "line_of_therapy": "3+",
-          "arm_hold_status": "open",
+          "line_of_therapy": "3",
+          "arm_hold_status": "on hold",
           "biomarker": [
             {
               "cohort": "Phase 2 Dose Expansion",
               "Gene": "ACVR1B",
               "Gene2": "Not available",
-              "Type": "Alteration",
+              "Type": "Frame Shift mut",
               "Variant": "Not available",
               "Selection": "include",
-              "Function": "positive",
-              "summary": "ACVR1B Alteration positive  "
+              "Function": "Loss",
+              "summary": "ACVR1B Frame Shift mut Loss  "
             }
           ]
         }
       ],
-      "docs": "https://clinicaltrials.gov/ct2/show/NCT03037385?term=NCT03037385&draw=2&rank=1",
+      "docs": "<a href=\"https://clinicaltrials.gov/ct2/show/NCT03037385?term=NCT03037385&amp;draw=2&amp;rank=1\">Link<\/a>",
       "doclastupdate": "2023-01-11",
-      "location": "Sioux Fall SD",
+      "location": "Sioux Falls SD",
       "min_age": "18 Years",
       "gender": "All",
       "link": "<a href=\"https://clinicaltrials.gov/ct2/show/NCT03037385\" target=\"_blank\">NCT03037385<\/a>"

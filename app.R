@@ -461,47 +461,14 @@ server <- function(input, output, session) {
   # Open the Document Tab and display the UI on Update
   observeEvent(input$bioMrk,{
     updateTabsetPanel(session, "inNav", selected = "Documents")
-<<<<<<< HEAD
-=======
-    
-    # output$doc_link <- renderText({input$doc})
-    
-    
-     
-    #  volumes <- c(Home = fs::path_home(), "R Installation" = R.home(), getVolumes()())
-    #  shinyFileChoose(input, "file", roots = volumes, session = session)
-    #  
-    # observe({
-    #   cat("\ninput$file value:\n\n")
-    #   print(input$file)
-    # })
-
-    
-    # ## print to browser
-    # file <- reactive(input$file)
-    # output$filepaths <- renderText({
-    #    as.character(parseFilePaths(volumes, file())$datapath)
-    #      })
-    # output$doc_link <- renderText({
-    #   as.character(parseFilePaths(volumes, file())$datapath)
-    # })
-    # 
-    output$doc_link <- renderText({input$doc})
-    
-    #added document last updated date
-    output$dt_link <- renderText({paste("Last Updated:", input$dt)})
-    
->>>>>>> e1ed9b389d9d756d850d5d7a7441457427fc5473
     output$DisDoc <- renderUI({
       docuOut 
     })
     output$doc_link <- renderText({input$doc})
-    #output$dt_link <- renderText({paste("Last Updated:", input$dt)})
     
   })
   
-<<<<<<< HEAD
-=======
+
   # docInput = eventReactive(input$doc_fileType,{
   #   if(input$doc_fileType == "Flat File") {
   #       docs = input$doc
@@ -513,28 +480,6 @@ server <- function(input, output, session) {
   #   print(docs)
   # })
   
-  #  eventReactive(input$doc_fileType,{
-  #    output$doc_link<- if(input$doc_fileType == "JIT link") {
-  # #     # docs = input$doc
-  #     docs = HTML(paste(a("JIT link",href=input$doc)))
-  #   } else
-  #   {
-  #     # tagvar = tags$a(href=input$doc,)
-  #     # docs = as.character(tagvar)
-  #     docs = HTML(paste(a("Avera Sharept",href=input$doc)))
-  #   }
-  #   print(docs)
-  # })
-  
-  # docs = if(input$doc_fileType == "Flat File") {
-  #   docs = input$doc
-  # } else
-  # {
-  #   tagvar = tags$a(href=input$doc,)
-  #   docs = tagvar
-  # },
-  
->>>>>>> e1ed9b389d9d756d850d5d7a7441457427fc5473
   
   ##### Panel 5: View Trial
   observeEvent(input$move_brow,{
@@ -629,20 +574,7 @@ server <- function(input, output, session) {
                      type = infoDis$type,
                      phase = infoDis$phase,
                      arm = list(armForBioMk),
-                      # docs = if(input$doc_fileType == "Flat File") {
-                      #   docs = HTML(paste(a("File link",href=input$doc)))
-                      # } else
-                      # {
-                     #   tagvar = tags$a(href=input$doc,)
-<<<<<<< HEAD
-                     #   docs = tagvar
-                     # },
-                     docs = input$doc,
-=======
-                        docs = HTML(paste(a("Link",href=input$doc))),
-                      # },
-                     #docs = docInput,
->>>>>>> e1ed9b389d9d756d850d5d7a7441457427fc5473
+                     docs = HTML(paste(a("Link",href=input$doc))),
                      doclastupdate = input$dt,
                      location = input$loct,
                      min_age = infoDis$min_age,

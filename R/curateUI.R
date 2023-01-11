@@ -75,12 +75,8 @@ secondhalfUI <- fluidPage(
     br(),
     column(3, selectInput("trHold",
                           "1. Please choose the trial status for the site:",
-<<<<<<< HEAD
+
                           choices = c("open", "on hold", "closed","coming soon"))),
-=======
-                          choices = c("open", "on hold", "closed", "coming soon"))),
-    
->>>>>>> e1ed9b389d9d756d850d5d7a7441457427fc5473
     column(9, textInput("disSum", 
                         "2. Please enter an overall disease summary")),
     br(),
@@ -300,43 +296,23 @@ docuOut <- fluidPage(
          actionButton("move_brow", "Move to Browser",class="btn-warning")),
   br(),
   br(),
-<<<<<<< HEAD
+
   wellPanel(
     column(4,
            # add link to trial documentation
            textInput(inputId = "doc", label = "Please add link to (site) trial documentation")),
     column(6,  h5("Link added: "), textOutput("doc_link"))
     ),
-=======
-  
-  # selection of the documentation type 
-   # radioButtons("doc_fileType",label = "Select File type for the link to Documentation: ",choices = c("JIT Link", "SharePoint Link"),selected = NULL,inline = T),
 
-  # add link to trial documentation
-   textInput(inputId = "doc", 
-             label = "Please add link to (site) trial documentation"),
-   br(),
-  
-   h5("Link added: "), 
-  br(),
-  textOutput("doc_link"),
-  # uiOutput("doc_link"),
-  
-  # shinyFilesButton("file", "File select", "Please select a file", multiple = TRUE, viewtype = "detail"),
-  # # verbatimTextOutput("filepaths"),
-  # verbatimTextOutput("doc_link"),
->>>>>>> e1ed9b389d9d756d850d5d7a7441457427fc5473
   #added last update date for documentation
   br(),
   br(),
   br(),
   
   column(6,
-  # add  documentation date
+  # add  documentation date and trial location
   dateInput(inputId = "dt", label = "Document last updated")),
   column(6, textInput(inputId = "loct", label = "Location of trial availablity (eg: Sioux Falls SD)") )
- # textOutput("dt_link")
-  ####
 ))
 
 ##### Panel 5: View Trial
