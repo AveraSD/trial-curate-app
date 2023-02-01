@@ -16,6 +16,7 @@ disAd <- reactiveValues(
   indisAd = tibble(), # disease  
   armDf = tibble(), # cohort 
   armDfInfo = tibble(), # cohort + arm info
+  Armpt1Tb_out = tibble(), # mergered cohort + arm info
   dfAdd = tibble(), # cohort + biomarker
   add_or_edit = NULL,  # confirming the button selection
   add_or_edit_arminfo = NULL, 
@@ -60,8 +61,9 @@ modal_arminfo <- function(lineTx, armStatus) {
         selectInput(
           inputId = "lineTx",
           label = "Line of Therapy",
-          choices = c("Not available", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-          multiple = F,
+          #choices = c("Not available", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+          choices = c("Not available", 1, 2, 3, "3+", "Neoadjuvant","Adjuvant", "Maintenance", "> 3 lines of prior treatment", "Recurrent","Registry", "Surgical", "Sequencing"),
+          multiple = T,
           width = "200px"
         )
       ),

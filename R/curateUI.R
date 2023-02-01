@@ -1,6 +1,7 @@
 ## ui side utils
 library(reactable)
 library(shinyWidgets)
+library(shinyFiles)
 ##### Panel 1: NCT ID + query trial
 input_form <- fluidRow(
   
@@ -11,12 +12,15 @@ input_form <- fluidRow(
              textInput("info_NCT", 
                        "1. NCT Trial ID")),
       column(4, 
+             textInput("info_protNo", 
+                       "2. Protocol Number")),
+      column(4, 
              selectInput("info_jit", 
-                         "2. Just in time trial offered by", 
+                         "3. Just in time trial offered by", 
                          c("Tempus", "Caris", "Optimal", "Not JIT","Optimal & Tempus","Tempus & Caris"))),
       column(4, 
              textInput("info_trial_name", 
-                       "3. Name of the trial")),
+                       "4. Name of the trial")),
       br()
     ),
     
@@ -69,9 +73,10 @@ secondhalfUI <- fluidPage(
 
     ### Hold status for the trial at the site 
     br(),
-    column(3, selectInput("trHold", 
+    column(3, selectInput("trHold",
                           "1. Please choose the trial status for the site:",
-                          choices = c("open", "on hold", "closed"))),
+
+                          choices = c("open", "on hold", "closed","coming soon"))),
     column(9, textInput("disSum", 
                         "2. Please enter an overall disease summary")),
     br(),
@@ -86,6 +91,8 @@ secondhalfUI <- fluidPage(
     h6("3. Please choose each disease you wish to record (choose levels according to Oncotree with as much detail as possible)"),
     br(),
     
+    
+    br(),
     radioGroupButtons(
       inputId = "certir",
       choices = c("include", 
@@ -120,9 +127,19 @@ secondhalfUI <- fluidPage(
                selectInput("lev7", "Level7", choices = "", selected = "")
         )
       ),
-      
-      actionButton(inputId = "addDis",label = "ADD")
+      fluidRow(checkboxGroupInput(
+        inputId = "levl_stage", label= "Disease Stage",
+        choices = c("Stage I","Stage II","Stage III","Stage IV","Methylated","Un-resectable","resectable",
+                    "Unmethylated","Advanced Stage","Recurrent","Metastatic","Early stage", "New diagnosis","Neoplasms","Relapsed/Refractory","Post Cellular Therapy",
+                    "Smoldering Myeloma"),inline = T,selected = NULL)
+        
+      ),
+    br(),
+    br(),
+    actionButton(inputId = "addDis",label = "ADD")
     ),
+    
+    
     
     # display chosen disease
     br(),
@@ -194,7 +211,7 @@ biom_display <- fluidPage(
 
   # TABLE A to show LoT and Status
   div(style = "margin-top: 30px;"),
-  h5(strong("A: Cohort level line of therapy and recruitement status")),
+  h5(strong("A: Cohort level line of therapy and recruitment status")),
   # add clear button arm info
   
   div(
@@ -271,6 +288,7 @@ doc_form <- fluidPage(
 )
 
 docuOut <- fluidPage(
+  fluidRow(
   
   div(style = "margin-top: 40px;"),
   column(width = 4,
@@ -279,13 +297,23 @@ docuOut <- fluidPage(
   br(),
   br(),
 
-  # add link to trial documentation
-  textInput(inputId = "doc", 
-            label = "Please add link to (site) trial documentation"),
+  wellPanel(
+    column(4,
+           # add link to trial documentation
+           textInput(inputId = "doc", label = "Please add link to (site) trial documentation")),
+    column(6,  h5("Link added: "), textOutput("doc_link"))
+    ),
+
+  #added last update date for documentation
   br(),
-  h5("Link added: "), 
-  textOutput("doc_link")
-)
+  br(),
+  br(),
+  
+  column(6,
+  # add  documentation date and trial location
+  dateInput(inputId = "dt", label = "Document last updated")),
+  column(6, textInput(inputId = "loct", label = "Location of trial availablity (eg: Sioux Falls SD)") )
+))
 
 ##### Panel 5: View Trial
 # display for the browser tab

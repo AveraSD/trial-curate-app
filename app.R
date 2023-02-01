@@ -17,6 +17,7 @@ library(data.table)
 library(dplyr)
 library(here)
 
+library(fs)
 # NCT03037385
 
 # source necessary files
@@ -183,14 +184,24 @@ server <- function(input, output, session) {
     lastInput <- allInputDise[allInputDise != "NA"]
     lenlast <- length(lastInput)
     
+    # addDisBtn <- tibble(code = lastInput[lenlast], 
+    #                     selection = input$certir)
+    
+    #Adding stage information for disease
     addDisBtn <- tibble(code = lastInput[lenlast], 
-                        selection = input$certir)
+                        selection = input$certir,
+                        stage = as.character(input$levl_stage))
     
     disAd$indisAd <- disAd$indisAd %>% bind_rows(addDisBtn)
     output$dt_dise <- renderDT({
-      datatable(disAd$indisAd, 
+      disTb_out=disAd$indisAd %>% group_by(code,selection) %>% 
+        summarise(
+          stage = paste0(stage,collapse = ";")
+        )
+      datatable(disTb_out, 
                 filter = 'none', 
                 selection = 'none', 
+             #   editable = TRUE,
                 options = list(dom = 't'))
     })
   })
@@ -226,6 +237,7 @@ server <- function(input, output, session) {
               escape = F,
               selection ='single',
               rownames = FALSE,
+              #editable = TRUE,
               colnames = c('Arm #' = 'ArmID',
                            'Cohort(s)' = 'cohortlabel',
                            'Drugs(s)' = 'drug',
@@ -274,7 +286,11 @@ server <- function(input, output, session) {
     
     #disAd$armDfInfo <- inner_join(disAd$armDfInfo, dt_row, by = "cohortlabel")
     output$dt_table_arm_display <- renderDT({
-      datatable(disAd$armDfInfo, 
+      disAd$Armpt1Tb_out=disAd$armDfInfo %>% group_by(armID,cohortlabel,armStatus) %>% 
+        summarise(
+          lineTx = paste0(lineTx,collapse = ";")
+        )
+      datatable(disAd$Armpt1Tb_out, 
                 rownames = F,
                 options = list(dom = 't'))
     })
@@ -299,7 +315,8 @@ server <- function(input, output, session) {
       disAd$armDfInfo <- disAd$armDfInfo %>% bind_rows(dt_rowall) %>% distinct()
     }
     output$dt_table_arm_display <- renderDT({
-      datatable(disAd$armDfInfo, 
+      disAd$Armpt1Tb_out=disAd$armDfInfo %>% group_by(armID,cohortlabel,armStatus) %>% summarise(lineTx = paste0(lineTx,collapse = ";"))
+      datatable(disAd$Armpt1Tb_out, 
                 rownames = FALSE,
                 colnames = c('Arm #' = 'armID',
                              'Cohort' = 'cohortlabel'),
@@ -349,7 +366,7 @@ server <- function(input, output, session) {
   # TABLE B: when specific row is selected - add biomarker
   observeEvent(input$current_id,{
     if (!is.null(input$current_id) & stringr::str_detect(input$current_id, pattern = "edit")) {
-      selRow <- disAd$armDfInfo[input$dt_table_rows_selected,]
+      selRow <- disAd$armDf[input$dt_table_rows_selected,]
       cohotLb <- selRow[["cohortlabel"]]
       output$TEXTA <- renderText({
         cohotLb
@@ -363,7 +380,8 @@ server <- function(input, output, session) {
   
   observeEvent(input$final_edit, {
     shiny::removeModal()
-    armdf <- disAd$armDfInfo 
+    armdf <- disAd$Armpt1Tb_out
+    #armdf <- disAd$armDfInfo %>% group_by(armID,cohortlabel,armStatus) %>% summarise(lineTx = paste0(lineTx,collapse = ";"))
     #selarm <- armdf[input$dt_table_rows_selected,] # change to select by cohortlabel
     selarm <- armdf %>% filter(cohortlabel %in% armdf[input$dt_table_rows_selected, "cohortlabel"])
     armID <- selarm[["armID"]]
@@ -399,7 +417,8 @@ server <- function(input, output, session) {
   observeEvent(input$final_edit, {
     shiny::req(disAd$add_or_edit == 1)
     shiny::removeModal()
-    armdf <- disAd$armDfInfo 
+    armdf <- disAd$Armpt1Tb_out
+    #armdf <- disAd$armDfInfo %>% group_by(armID,cohortlabel,armStatus) %>% summarise(lineTx = paste0(lineTx,collapse = ";"))
     nArm <- nrow(armdf)
     for(e in 1:nArm){
       dt_rowall <- tibble(
@@ -438,18 +457,28 @@ server <- function(input, output, session) {
     shiny::removeModal()
   })
   
-  
-  
   ##### Panel 4: Documentation 
   # Open the Document Tab and display the UI on Update
   observeEvent(input$bioMrk,{
     updateTabsetPanel(session, "inNav", selected = "Documents")
-    output$doc_link <- renderText({input$doc})
     output$DisDoc <- renderUI({
       docuOut 
     })
+    output$doc_link <- renderText({input$doc})
+    
   })
   
+
+  # docInput = eventReactive(input$doc_fileType,{
+  #   if(input$doc_fileType == "Flat File") {
+  #       docs = input$doc
+  #     } else
+  #     {
+  #       tagvar = tags$a(href=input$doc,)
+  #       docs = as.character(tagvar)
+  #     }
+  #   print(docs)
+  # })
   
   
   ##### Panel 5: View Trial
@@ -468,7 +497,7 @@ server <- function(input, output, session) {
       select(!(arm))
     
     # save the arm info from query output
-    armTb <- left_join(disAd$armDf, disAd$armDfInfo, by = "cohortlabel")
+    armTb <- left_join(disAd$armDf, disAd$Armpt1Tb_out, by = "cohortlabel")
     armTb <- armTb %>% rownames_to_column(var = "ArmID")
     armTb <- tibble(
       ArmID = armTb$ArmID,
@@ -480,7 +509,8 @@ server <- function(input, output, session) {
     )
     
     # save the disease info entered
-    DisTab <- as_tibble(disAd$indisAd)
+    tempDisease=disAd$indisAd %>% group_by(code,selection) %>%  summarise(stage = paste0(stage,collapse = ";"))
+    DisTab <- as_tibble(tempDisease)
     
     # save the biomarker info entered
     
@@ -496,6 +526,7 @@ server <- function(input, output, session) {
         Gene != "Not available" & Type != "Not available" & Variant == "Not available" & Function != "Not available" ~ paste(Gene, Type, Function, .sep = " "),
         Gene != "Not available" & Type != "Fusion" & Variant == "Not available" & Function == "Not available" ~ paste(Gene, Type, .sep = " "),
         Type == "Fusion" & Gene != "Not available" & Gene2 != "Not available" & Variant == "Not available" ~ paste0(Gene,"-", Gene2," ", Type),
+        Type == "Fusion" & Gene != "Not available" & Gene2 == "Not available" & Variant == "Not available" ~ paste0(Gene," ", Type),
         
         # without gene 
         Gene == "Not available" & Type != "Not available" & Variant == "Not available" ~ paste(Type, Function, .sep = " "),
@@ -524,6 +555,7 @@ server <- function(input, output, session) {
     # final tibble to display  
     disBrw2 <<- tibble(
       info = tibble(NCT = input$info_NCT,
+                    Protocol_No = input$info_protNo,
                     jit = input$info_jit,
                     trial_name = input$info_trial_name
       ),
@@ -542,20 +574,16 @@ server <- function(input, output, session) {
                      type = infoDis$type,
                      phase = infoDis$phase,
                      arm = list(armForBioMk),
-                     # docs = if(input$doc %>% is_empty()) {
-                     #   docs = infoDis$link
-                     # } else
-                     # {
-                     #   docs = glue("<a href=\\", input$doc, "\\", "target=\"_blank\">site-documentation</a>")
-                     # },
-                     docs = input$doc,
+                     docs = HTML(paste(a("Link",href=input$doc))),
+                     doclastupdate = input$dt,
+                     location = input$loct,
                      min_age = infoDis$min_age,
                      gender = infoDis$gender,
                      link = infoDis$link
       )
     )
     
-    
+    #"<a href=\\", input$doc, "\\", "target=\"_blank\">site-documentation</a>"
     
     view_trial_table <- reactable(disBrw2 %>%
                                     unnest(c(info, disease, query)) %>%
@@ -576,7 +604,8 @@ server <- function(input, output, session) {
                                       unnest(arm) %>%
                                       select(-cohortlabel) %>%
                                       unnest(biomarker) %>%
-                                      select(-c(ArmID, line_of_therapy, arm_hold_status))
+                                      select(-c(ArmID))
+                                    #line_of_therapy, arm_hold_status
                                     
                                     tab_disease <- disBrw2$disease %>% unnest(details)
                                     # tab_disease <- disBrw2 %>%
