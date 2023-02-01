@@ -11,7 +11,23 @@ outSubmit <- function() {
   
   outjson <- paste0(here(trial_data_dir), 
                     paste0(tr2 %>% unnest(c(info, disease, query)) %>% select(NCT) %>% as.character(), ".full.ndjson"))
+  
+  # Connect to the MongoDB server
+  mongo <- mongo(db = "aci", 
+                 collection = "ClinicalTrials", 
+                 url = "mongodb://127.0.0.1:27017")
+  
+  
   writeLines(tr2 %>% toJSON(pretty = T), outjson)
-  message(paste0("Written to file: ", outjson))
+  
+  json_data_file <- do.call(rbind, 
+                            lapply(paste(readLines(outjson, warn=FALSE),
+                                         collapse=""), 
+                                   jsonlite::fromJSON))
+  mongo$insert(as.data.frame(json_data_file))
+  
+  
+  
+  #message(paste0("Written to file: ", outjson))
 }
 
