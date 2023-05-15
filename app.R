@@ -188,8 +188,9 @@ server <- function(input, output, session) {
     #                     selection = input$certir)
     
     #Adding stage information for disease
-    addDisBtn <- tibble(code = lastInput[lenlast], 
-                        selection = input$certir,
+#    addDisBtn <- tibble(code = lastInput[lenlast], 
+			 addDisBtn <- tibble(code = paste0(lastInput,collapse = ","), 
+                       selection = input$certir,
                         stage = as.character(input$levl_stage))
     
     disAd$indisAd <- disAd$indisAd %>% bind_rows(addDisBtn)
@@ -574,7 +575,7 @@ server <- function(input, output, session) {
                      type = infoDis$type,
                      phase = infoDis$phase,
                      arm = list(armForBioMk),
-                     docs = HTML(paste(a("Link",href=input$doc))),
+                     docs = HTML(paste(a("eREG",href=input$doc, target="_blank"))),
                      doclastupdate = input$dt,
                      location = input$loct,
                      min_age = infoDis$min_age,
