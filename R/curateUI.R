@@ -76,7 +76,7 @@ secondhalfUI <- fluidPage(
     column(3, selectInput("trHold",
                           "1. Please choose the trial status for the site:",
 
-                          choices = c("open", "on hold", "closed","coming soon"))),
+                          choices = c("open", "open(JIT)", "pending(JIT)","on hold", "closed","coming soon"))),
     column(9, textInput("disSum", 
                         "2. Please enter an overall disease summary")),
     br(),
@@ -129,7 +129,7 @@ secondhalfUI <- fluidPage(
       ),
       fluidRow(checkboxGroupInput(
         inputId = "levl_stage", label= "Disease Stage",
-        choices = c("Stage I","Stage II","Stage III","Stage IV","Methylated","Un-resectable","resectable",
+        choices = c("Stage I","Stage II","Stage III","Stage IV","Stage IVA", "Stage IVB", "Methylated","Un-resectable","resectable",
                     "Unmethylated","Advanced Stage","Recurrent","Metastatic","Early stage", "New diagnosis","Neoplasms","Relapsed/Refractory","Post Cellular Therapy",
                     "Smoldering Myeloma"),inline = T,selected = NULL)
         
