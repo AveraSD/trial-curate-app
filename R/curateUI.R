@@ -17,7 +17,7 @@ input_form <- fluidRow(
       column(4, 
              selectInput("info_jit", 
                          "3. Trials offered by", 
-                         c("Tempus", "Caris", "Optimal", "Avera Trials"))),
+                         c("Tempus", "Caris", "Optimal", "Avera Trials", "Avera Trials (Basket)"))),
       column(4, 
              textInput("info_trial_name", 
                        "4. Name of the trial")),
