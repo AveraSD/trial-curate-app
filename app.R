@@ -531,6 +531,7 @@ server <- function(input, output, session) {
     
     tb_add <- bioMarkTb %>%  mutate(summary = "") %>% mutate( summary = paste0(Gene," ",Gene2, " ",Variant, " ",Type, " ", Function) )
     tb_add$summary <- gsub( "Not available", "", as.character(tb_add$summary) )
+   # tb_add <- tb_add %>% mutate(summary = case_when(!is.na(summary) ~ summary, summary == '\\s+' ~ paste0("absent") ) )
     #%>% mutate( summary = gsub( "Not available", "", summary) )
       #   case_when(
       #   # Mutation variant based
@@ -552,6 +553,7 @@ server <- function(input, output, session) {
       # )
 #    )
     #colnames(tb_add)
+    print(tb_add$summary)
     tb_add = tb_add[,c(1:2,5:11)]
     
     # adding the biomarker tibble to the respective cohort 
@@ -623,7 +625,7 @@ server <- function(input, output, session) {
                                       select(-c(ArmID))
                                     #line_of_therapy, arm_hold_status
                                     
-                                    tab_disease <- disBrw2$disease %>% unnest(details,disease_complete)
+                                    tab_disease <- disBrw2$disease %>% unnest(c(details,disease_complete) )
                                     # tab_disease <- disBrw2 %>%
                                     #   unnest(c(info, disease, query)) %>%
                                     #   select(summary:details) %>%
