@@ -188,8 +188,8 @@ server <- function(input, output, session) {
     #                     selection = input$certir)
     
     #Adding stage information for disease
-#    addDisBtn <- tibble(code = lastInput[lenlast], 
-			 addDisBtn <- tibble(code = paste0(lastInput,collapse = ","), 
+    addDisBtn <- tibble(code = lastInput[lenlast], 
+			# addDisBtn <- tibble(code = paste0(lastInput,collapse = ","), 
                        selection = input$certir,
                         stage = as.character(input$levl_stage))
     
