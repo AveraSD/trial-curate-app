@@ -529,7 +529,8 @@ server <- function(input, output, session) {
     
     bioMarkTb <- as_tibble(disAd$dfAdd)
     
-    tb_add <- bioMarkTb %>%  mutate(summary = "") %>% mutate( summary = paste0(Gene," ",Gene2, " ",Variant, " ",Type, " ", Function) 
+    tb_add <- bioMarkTb %>%  mutate(summary = "") %>% mutate( summary = paste0(Gene," ",Gene2, " ",Variant, " ",Type, " ", Function) )
+    tb_add$summary <- gsub( "Not available", "", as.character(tb_add$summary) )
     #%>% mutate( summary = gsub( "Not available", "", summary) )
       #   case_when(
       #   # Mutation variant based
@@ -549,7 +550,7 @@ server <- function(input, output, session) {
       #   Gene == "Not available" & Type == "Not available" & Variant == "Not available" & Function == "Not available" ~ paste("absent")
       #   
       # )
-    )
+#    )
     #colnames(tb_add)
     tb_add = tb_add[,c(1:2,5:11)]
     
@@ -622,7 +623,7 @@ server <- function(input, output, session) {
                                       select(-c(ArmID))
                                     #line_of_therapy, arm_hold_status
                                     
-                                    tab_disease <- disBrw2$disease %>% unnest(details)
+                                    tab_disease <- disBrw2$disease %>% unnest(details,disease_complete)
                                     # tab_disease <- disBrw2 %>%
                                     #   unnest(c(info, disease, query)) %>%
                                     #   select(summary:details) %>%
@@ -656,6 +657,7 @@ server <- function(input, output, session) {
     #responses <- NULL
     reset("armsOnly")
     disAd$indisAd = tibble() # disease  
+    disAd$disStr = tibble()
     disAd$armDf = tibble() # cohort 
     disAd$armDfInfo = tibble() # cohort + arm info
     #disAd$armDfBiomarker = tibble() # cohort + arm info + biomarker
@@ -668,13 +670,11 @@ server <- function(input, output, session) {
   
   observeEvent(input$confirm1,{
     outSubmit()
-    #disAd$allbrws = disAd$allbrws %>% dplyr::bind_rows(disAd$rsdf) 
     alert("Submitted successfully!")
     refresh()
     resetAll()
     
-    #updateReactable("responses", data = NULL)
-    #updateTabsetPanel(session = session, inputId = "inNav", selected = "NCT ID")
+    
   })
   # observeEvent(input$final_confirm,{
   #   print(disAd$resultsdf)

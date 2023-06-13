@@ -1,0 +1,124 @@
+[
+  {
+    "info": {
+      "NCT": "NCT05012397",
+      "Protocol_No": "3202",
+      "jit": "Caris",
+      "trial_name": "Rain Therapeutics Inc"
+    },
+    "disease": {
+      "summary": "Solid Tumors | Head and Neck Carcinoma | Cholangiocarcinoma | Sarcoma | Lung Adenocarcinoma | Bladder Urothelial Carcinoma | Stomach Adenocarcinoma | Breast Cancer Invasive | Ovarian Carcinoma | Cervical Cancer | Non Small Cell Lung Cancer | Gastric Cancer | Biliary Tract Cancer | Melanoma | Pancreas Cancer | MDM2 Gene Amplification | Testicular Germ Cell Tumor | Adrenocortical Carcinoma",
+      "details": [
+        {
+          "code": "Bladder Urothelial Carcinoma (BLCA)",
+          "selection": "include",
+          "stage": "Advanced Stage;Metastatic"
+        },
+        {
+          "code": "Head and Neck Carcinoma, Other (OHNCA)",
+          "selection": "include",
+          "stage": "Advanced Stage;Metastatic"
+        },
+        {
+          "code": "Lung Adenocarcinoma In Situ (LAIS)",
+          "selection": "include",
+          "stage": "Advanced Stage;Metastatic"
+        },
+        {
+          "code": "Non-Small Cell Lung Cancer (NSCLC)",
+          "selection": "include",
+          "stage": "Advanced Stage;Metastatic"
+        },
+        {
+          "code": "Ovarian Cancer, Other (OOVC)",
+          "selection": "include",
+          "stage": "Advanced Stage;Metastatic"
+        },
+        {
+          "code": "Pancreas (PANCREAS)",
+          "selection": "include",
+          "stage": "Advanced Stage;Metastatic"
+        },
+        {
+          "code": "Solid Tumors",
+          "selection": "include",
+          "stage": "Advanced Stage;Metastatic"
+        }
+      ],
+      "disease_complete": [
+        {
+          "complete_disease": "Solid Tumors"
+        },
+        {
+          "complete_disease": "Pancreas (PANCREAS), Pancreatic Cancer"
+        },
+        {
+          "complete_disease": "Ovary/Fallopian Tube (OVARY), Ovarian Cancer, Other (OOVC), Ovarian Cancer"
+        },
+        {
+          "complete_disease": "Lung (LUNG), Non-Small Cell Lung Cancer (NSCLC), Non-Small Cell Lung Cancer"
+        },
+        {
+          "complete_disease": "Head and Neck (HEAD_NECK), Head and Neck Carcinoma, Other (OHNCA), Head and Neck Cancer"
+        },
+        {
+          "complete_disease": "Lung (LUNG), Lung Adenocarcinoma In Situ (LAIS), Non-Small Cell Lung Cancer"
+        },
+        {
+          "complete_disease": "Bladder/Urinary Tract (BLADDER), Bladder Urothelial Carcinoma (BLCA), Bladder Cancer"
+        }
+      ]
+    },
+    "query": {
+      "nct": "NCT05012397",
+      "title": "Milademetan in Advanced/Metastatic Solid Tumors",
+      "current_status": "Recruiting",
+      "status_verif_date": "March 2023",
+      "last_update_date": "March 31, 2023",
+      "trial_hold_status": "open(JIT)",
+      "sponsor": "Rain Oncology Inc",
+      "brief_summary": "Phase 2, multicenter, single-arm, open-label basket study designed to evaluate the safety and efficacy of milademetan in patients with advanced or metastatic solid tumors refractory or intolerant to standard-of-care therapy that exhibit wild-type (WT) TP53 and MDM2 copy number (CN) ≥ 8 using prespecified biomarker criteria.",
+      "conditions": "Solid Tumors | Head and Neck Carcinoma | Cholangiocarcinoma | Sarcoma | Lung Adenocarcinoma | Bladder Urothelial Carcinoma | Stomach Adenocarcinoma | Breast Cancer Invasive | Ovarian Carcinoma | Cervical Cancer | Non Small Cell Lung Cancer | Gastric Cancer | Biliary Tract Cancer | Melanoma | Pancreas Cancer | MDM2 Gene Amplification | Testicular Germ Cell Tumor | Adrenocortical Carcinoma",
+      "type": "Interventional",
+      "phase": "Phase 2",
+      "arm": [
+        {
+          "ArmID": "1",
+          "cohortlabel": "Milademetan (RAIN-32)",
+          "drug": "RAIN-32",
+          "arm_type": "Experimental",
+          "line_of_therapy": "Not available",
+          "arm_hold_status": "open",
+          "biomarker": [
+            {
+              "cohort": "Milademetan (RAIN-32)",
+              "Gene": "TP53",
+              "Gene2": "Not available",
+              "Type": "Wild-Type",
+              "Variant": "Not available",
+              "Selection": "include",
+              "Function": "Not available",
+              "summary": "TP53   Wild-Type "
+            },
+            {
+              "cohort": "Milademetan (RAIN-32)",
+              "Gene": "MDM2",
+              "Gene2": "Not available",
+              "Type": "Amplification",
+              "Variant": "Not available",
+              "Selection": "include",
+              "Function": "Not available",
+              "summary": "MDM2   Amplification "
+            }
+          ]
+        }
+      ],
+      "docs": "<a href=\"https://trialplus.carisls.com\" target=\"_blank\">eREG<\/a>",
+      "doclastupdate": "2023-06-13",
+      "location": "Sioux Falls SD",
+      "min_age": "18 Years",
+      "gender": "All",
+      "link": "<a href=\"https://clinicaltrials.gov/ct2/show/NCT05012397\" target=\"_blank\">NCT05012397<\/a>"
+    }
+  }
+]
