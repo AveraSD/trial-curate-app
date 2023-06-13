@@ -14,6 +14,7 @@ firsthalfUI <- fluidRow(
 
 disAd <- reactiveValues(
   indisAd = tibble(), # disease  
+  disStr = tibble(), # add maintype
   armDf = tibble(), # cohort 
   armDfInfo = tibble(), # cohort + arm info
   Armpt1Tb_out = tibble(), # mergered cohort + arm info

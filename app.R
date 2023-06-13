@@ -16,7 +16,7 @@ library(config)
 library(data.table)
 library(dplyr)
 library(here)
-
+library(tidyr)
 library(fs)
 # NCT03037385
 
@@ -180,8 +180,14 @@ server <- function(input, output, session) {
   
   # TABLE A: Display the selected Disease and selection 
   observeEvent(input$addDis, {
-    allInputDise <- c(input$dise,input$lev2,input$lev3,input$lev4,input$lev5,input$lev6,input$lev7)
-    lastInput <- allInputDise[allInputDise != "NA"]
+    
+    print(input$lev3)
+   actual_type =  oncotree_addrows1 %>% filter(level_1 %in% input$dise & level_2 %in% input$lev2 & level_3 %in% c(input$lev3) & level_4 %in% c(input$lev4) )
+    #&  & level_4 %in% input$lev4 
+   print(actual_type) 
+   allInputDise <- c(input$dise,input$lev2,input$lev3,input$lev4,input$lev5,input$lev6,input$lev7)
+    lastInput <- allInputDise[allInputDise != "."]
+    print(lastInput)
     lenlast <- length(lastInput)
     
     # addDisBtn <- tibble(code = lastInput[lenlast], 
@@ -517,25 +523,25 @@ server <- function(input, output, session) {
     
     bioMarkTb <- as_tibble(disAd$dfAdd)
     
-    tb_add <- bioMarkTb %>%  mutate(summary = "") %>% mutate(
-      summary = case_when(
-        # Mutation variant based
-        Gene != "Not available" & Type != "Not available" & Variant != "Not available" & Function != "Not available"~ paste(Gene, Variant, Function, .sep = " "),
-        Gene != "Not available" & Type != "Not available" & Variant != "Not available" & Function == "Not available"~ paste(Gene, Variant, Type, .sep = " "),
-        
-        # Expression, fusion, CNA, etc  
-        Gene != "Not available" & Type != "Not available" & Variant == "Not available" & Function != "Not available" ~ paste(Gene, Type, Function, .sep = " "),
-        Gene != "Not available" & Type != "Fusion" & Variant == "Not available" & Function == "Not available" ~ paste(Gene, Type, .sep = " "),
-        Type == "Fusion" & Gene != "Not available" & Gene2 != "Not available" & Variant == "Not available" ~ paste0(Gene,"-", Gene2," ", Type),
-        Type == "Fusion" & Gene != "Not available" & Gene2 == "Not available" & Variant == "Not available" ~ paste0(Gene," ", Type),
-        
-        # without gene 
-        Gene == "Not available" & Type != "Not available" & Variant == "Not available" ~ paste(Type, Function, .sep = " "),
-        
-        # when empty 
-        Gene == "Not available" & Type == "Not available" & Variant == "Not available" & Function == "Not available" ~ paste("absent")
-        
-      )
+    tb_add <- bioMarkTb %>%  mutate(summary = "") %>% mutate( summary = paste0(Gene," ",Gene2, " ",Variant, " ",Type, " ", Function) %>% mutate( summary = gsub( "Not available", "", summary) )
+      #   case_when(
+      #   # Mutation variant based
+      #   Gene != "Not available" & Type != "Not available" & Variant != "Not available" & Function != "Not available"~ paste(Gene, Variant, Function, .sep = " "),
+      #   Gene != "Not available" & Type != "Not available" & Variant != "Not available" & Function == "Not available"~ paste(Gene, Variant, Type, .sep = " "),
+      #   
+      #   # Expression, fusion, CNA, etc  
+      #   Gene != "Not available" & Type != "Not available" & Variant == "Not available" & Function != "Not available" ~ paste(Gene, Type, Function, .sep = " "),
+      #   Gene != "Not available" & Type != "Fusion" & Variant == "Not available" & Function == "Not available" ~ paste(Gene, Type, .sep = " "),
+      #   Type == "Fusion" & Gene != "Not available" & Gene2 != "Not available" & Variant == "Not available" ~ paste0(Gene,"-", Gene2," ", Type),
+      #   Type == "Fusion" & Gene != "Not available" & Gene2 == "Not available" & Variant == "Not available" ~ paste0(Gene," ", Type),
+      #   
+      #   # without gene 
+      #   Gene == "Not available" & Type != "Not available" & Variant == "Not available" ~ paste(Type, Function, .sep = " "),
+      #   
+      #   # when empty 
+      #   Gene == "Not available" & Type == "Not available" & Variant == "Not available" & Function == "Not available" ~ paste("absent")
+      #   
+      # )
     )
     #colnames(tb_add)
     tb_add = tb_add[,c(1:2,5:11)]
