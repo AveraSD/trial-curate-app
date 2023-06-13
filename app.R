@@ -181,21 +181,25 @@ server <- function(input, output, session) {
   # TABLE A: Display the selected Disease and selection 
   observeEvent(input$addDis, {
     
-    print(input$lev3)
-   actual_type =  oncotree_addrows1 %>% filter(level_1 %in% input$dise & level_2 %in% input$lev2 & level_3 %in% c(input$lev3) & level_4 %in% c(input$lev4) )
-    #&  & level_4 %in% input$lev4 
+    # to get the maintype for trial match 
+   # print(input$lev3)
+   actual_type =  oncotree_addrows1 %>% filter(level_1 %in% input$dise & level_2 %in% input$lev2 & level_3 %in% c(input$lev3) & level_4 %in% c(input$lev4) ) %>% dplyr::select(1:8)
+   actual_type = apply(actual_type, 1, function(x) paste(x[x != "."], collapse = ", "))
    print(actual_type) 
+   
+   
+   #Adding complete disease information for disease
+   addComDis <- tibble(complete_disease = as.character(actual_type))
+   disAd$disStr <- disAd$disStr %>% bind_rows(addComDis)
+   
+   # to get all the other information from disease input 
    allInputDise <- c(input$dise,input$lev2,input$lev3,input$lev4,input$lev5,input$lev6,input$lev7)
     lastInput <- allInputDise[allInputDise != "."]
-    print(lastInput)
     lenlast <- length(lastInput)
     
-    # addDisBtn <- tibble(code = lastInput[lenlast], 
-    #                     selection = input$certir)
     
     #Adding stage information for disease
     addDisBtn <- tibble(code = lastInput[lenlast], 
-			# addDisBtn <- tibble(code = paste0(lastInput,collapse = ","), 
                        selection = input$certir,
                         stage = as.character(input$levl_stage))
     
@@ -519,11 +523,14 @@ server <- function(input, output, session) {
     tempDisease=disAd$indisAd %>% group_by(code,selection) %>%  summarise(stage = paste0(stage,collapse = ";"))
     DisTab <- as_tibble(tempDisease)
     
+    DisComplt = as_tibble(disAd$disStr)
+    
     # save the biomarker info entered
     
     bioMarkTb <- as_tibble(disAd$dfAdd)
     
-    tb_add <- bioMarkTb %>%  mutate(summary = "") %>% mutate( summary = paste0(Gene," ",Gene2, " ",Variant, " ",Type, " ", Function) %>% mutate( summary = gsub( "Not available", "", summary) )
+    tb_add <- bioMarkTb %>%  mutate(summary = "") %>% mutate( summary = paste0(Gene," ",Gene2, " ",Variant, " ",Type, " ", Function) 
+    #%>% mutate( summary = gsub( "Not available", "", summary) )
       #   case_when(
       #   # Mutation variant based
       #   Gene != "Not available" & Type != "Not available" & Variant != "Not available" & Function != "Not available"~ paste(Gene, Variant, Function, .sep = " "),
@@ -567,7 +574,8 @@ server <- function(input, output, session) {
                     trial_name = input$info_trial_name
       ),
       disease = tibble(summary = input$disSum,
-                       details = list(DisTab)
+                       details = list(DisTab),
+                       disease_complete = list(DisComplt)
       ),
       query = tibble(nct = input$info_NCT,
                      title = infoDis$title,
