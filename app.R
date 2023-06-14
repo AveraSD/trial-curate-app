@@ -594,7 +594,7 @@ server <- function(input, output, session) {
                      arm = list(armForBioMk),
                      docs = HTML(paste(a("eREG",href=input$doc, target="_blank"))),
                      doclastupdate = input$dt,
-                     location = input$loct,
+                     locations = input$loct,
                      min_age = infoDis$min_age,
                      gender = infoDis$gender,
                      link = infoDis$link
