@@ -574,7 +574,9 @@ server <- function(input, output, session) {
       info = tibble(NCT = input$info_NCT,
                     Protocol_No = input$info_protNo,
                     jit = input$info_jit,
-                    trial_name = input$info_trial_name
+                    trial_name = input$info_trial_name,
+                    
+                    disease_category = input$info_disease_cat
       ),
       disease = tibble(summary = input$disSum,
                        details = list(DisTab),
@@ -605,7 +607,9 @@ server <- function(input, output, session) {
     
     view_trial_table <- reactable(disBrw2 %>%
                                     unnest(c(info, disease, query)) %>%
-                                    select(NCT:trial_name),
+                                  #  select(NCT:trial_name),
+                           #displaying also the new variable disease category       
+                                  select(NCT:disease_category),
                                   resizable = TRUE,
                                   style = list(minWidth = 800),
                                   fullWidth = TRUE,

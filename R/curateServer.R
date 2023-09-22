@@ -63,7 +63,7 @@ modal_arminfo <- function(lineTx, armStatus) {
           inputId = "lineTx",
           label = "Line of Therapy",
           #choices = c("Not available", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-          choices = c("Not available", 1, 2, 3, "3+", "Neoadjuvant","Adjuvant", "Maintenance", "> 3 lines of prior treatment", "Recurrent","Registry", "Surgical", "Sequencing"),
+          choices = c("Not available", 1, "1+", 2, "2+", 3, "3+", "Neoadjuvant","Adjuvant", "Maintenance", "> 3 lines of prior treatment", "Recurrent","Registry", "Surgical", "Sequencing"),
           multiple = T,
           width = "200px"
         )
@@ -140,7 +140,7 @@ modal_biomarker <- function(gene1, gene2, typ, var, selec, func) {
         selectInput(
           inputId = "typ",
           label = "Type",
-          choices = c("Not available", "Mutation","Missense mut", "Frame Shift mut", "Splice site mut", "Skipping Mutation","Alteration", "Multiple Mutation", "Wild-Type", "Amplification", "Deletion", "Abberration" ,"Rearrangement","Class I Mutation" ,"Class II Mutation", "Class III Mutation" ,"TMB", "MSI", "MSS","Microsatellite" ,"PD-1", "PD-L1", "PD-L2", "p16", "Fusion", "RNA expr","ctDNA" , "HRD", "MMR", "dMMR", "pMMR" ,"ER (IHC/FISH)", "PR (IHC/FISH)", "HER2 (IHC/FISH)"),
+          choices = c("Not available", "Mutation","Missense mut", "Frame Shift mut", "Splice site mut", "Skipping Mutation","Alteration", "Multiple Mutation", "Wild-Type", "Amplification", "Deletion", "Abberration" ,"Rearrangement","Class I Mutation" ,"Class II Mutation", "Class III Mutation" ,"TMB", "MSI", "MSS","Microsatellite" ,"PD-1", "PD-L1", "PD-L2", "p16", "Fusion", "RNAexpr","ctDNA" , "HRD", "MMR", "dMMR", "pMMR" ,"ER (IHC/FISH)", "PR (IHC/FISH)", "HER2 (IHC/FISH)"),
           multiple = F,
           width = "200px"
         )
