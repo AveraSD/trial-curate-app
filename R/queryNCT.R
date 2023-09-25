@@ -8,7 +8,8 @@ library(tidyverse)
 nctApi <- function(nct_id) {
   
   # API info and query params
-  base_url <- "https://clinicaltrials.gov/"
+#  base_url <- "https://clinicaltrials.gov/"
+  base_url <- "https://classic.clinicaltrials.gov/"
   path <- "api/query/full_studies"
   min_rnk <- 1
   max_rnk <- 1
@@ -72,7 +73,7 @@ parseNct <- function(nct_id, nct_parsed) {
   arm_groups <- function(x) {
     cohorts <- x$ArmGroupList$ArmGroup[[1]]$ArmGroupLabel
     dru <- unite(data = (x$ArmGroupList$ArmGroup[[1]]$ArmGroupInterventionList %>% 
-                           unnest_wider(col = "ArmGroupInterventionName")), 
+                         unnest_wider(col = "ArmGroupInterventionName",names_sep = ":")), 
                  col = "drug", 
                  sep = " | ")
     armtype <- x$ArmGroupList$ArmGroup[[1]]$ArmGroupType
