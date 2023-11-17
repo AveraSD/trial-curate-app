@@ -22,11 +22,29 @@ input_form <- fluidRow(
              textInput("info_trial_name", 
                        "4. Name of the trial")),
       
+      # column(4, 
+      #        selectInput("info_disease_cat", 
+      #                  "4. Disease category",
+      #                  c("Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other", "Other", "Brain","Breast","Genitourinary", "Gastrointestinal","Gynecology","Head & Neck",
+      #                    "Lung","Melanoma","Prostate"))),
+     # New with multiple selection oct 27th
       column(4, 
              selectInput("info_disease_cat", 
-                       "4. Disease category",
-                       c("Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other", "Other", "Brain","Breast","Genitourinary", "Gastrointestinal","Gynecology","Head & Neck",
-                         "Lung","Melanoma","Prostate"))),
+                         "5. Disease category",
+                         c("Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other","MedOnc: Lung","MedOnc: Melanoma","Prostate", "MedOnc: GEJ/Gastric", "MedOnc: Pancreas", "MedOnc: Colorectal/Anal","MedOnc: Bladder", "MedOnc: Head & Neck","MedOnc: Brain","MedOnc/Precision: Non-Treatment","MedOnc/Precision: Genomic/Molecular Profiling","Gyn:Breast",
+                           "Gyn: Cervical", "Gyn: Endometrial","Gyn: Ovarian","Gyn: Vulva","Gyn/Precision: Non-Treatment","Gyn/Precision: Genomic Profiling", "Precision: Retrospective Chart Review"
+                           ), multiple = T)),
+      
+      
+     column(4, 
+            selectInput("info_Principal_Investigator", 
+                        "6. Principal Investigator",
+                        c("Not available","Dr. Andrade Gonzalez", "Dr. Jehangir","Dr. Arneson","Dr. Grow","Dr. Figura","Dr. Murphy","Dr. Mendez-Hernandez", "Dr. Huber", "Dr. Solomon", "Dr. Vaca","Dr. McKean", "Dr. Higgins","Dr. Sanford","Dr. Spanos","Dr. Jameson","Dr. Jones",
+                          "Dr. Rojas-Espaillat", "Dr. Starks","Dr. Bidus","Dr. Merrigan","Dr. Bryan","Dr. Villanueva", "Dr. Conklin"
+                        ), multiple = F)),
+     
+     
+     
       
       br()
     ),
@@ -83,7 +101,8 @@ secondhalfUI <- fluidPage(
     column(3, selectInput("trHold",
                           "1. Please choose the trial status for the site:",
 
-                          choices = c("open", "JIT", "open(JIT)", "pending(JIT)","on hold", "closed","coming soon"))),
+                        #  choices = c("open", "JIT", "open(JIT)", "pending(JIT)","on hold", "closed","coming soon"))),
+                             choices = c("open", "JIT", "In Start Up", "Suspended","open(JIT)", "pending(JIT)","on hold", "closed","coming soon"))),
     column(9, textInput("disSum", 
                         "2. Please enter an overall disease summary")),
     br(),
@@ -137,7 +156,7 @@ secondhalfUI <- fluidPage(
       fluidRow(checkboxGroupInput(
         inputId = "levl_stage", label= "Disease Stage",
         choices = c("Stage I","Stage II","Stage III","Stage IIIc","Extensive","Stage IV","Stage IVA", "Stage IVB", "Methylated","Un-resectable","resectable",
-                    "Unmethylated","Advanced Stage","Recurrent","Metastatic","Early stage", "New diagnosis","Neoplasms","Relapsed/Refractory","Post Cellular Therapy",
+                    "Unmethylated","Advanced Stage","Locally Advanced","Neoadjuvant", "Adjuvant","Recurrent","Metastatic","Early stage", "New diagnosis","Neoplasms","Relapsed/Refractory","Post Cellular Therapy",
                     "Smoldering Myeloma"),inline = T,selected = NULL)
         
       ),

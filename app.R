@@ -114,8 +114,8 @@ server <- function(input, output, session) {
   
   # Display the Arm table 
   output$armsOnly <- renderReactable({
-    disAd$armDf <- displatAPI()[[11]][[1]]
-    armquery <- displatAPI()[[11]][[1]]
+    disAd$armDf <- displatAPI()[[11]][[1]] %>% as.data.frame() %>% select(cohortlabel, drug, arm_type)
+    armquery <- displatAPI()[[11]][[1]] %>% as.data.frame() %>% select(cohortlabel, drug, arm_type)
     reactable(armquery, 
               compact = TRUE,
               bordered = TRUE, 
@@ -241,7 +241,7 @@ server <- function(input, output, session) {
   # TABLE 1: table shows cohort arms to enter line of therapy and arm status
   output$dt_table_arm <- renderDataTable({
     butns_arminfo <- create_btns_arminfo(nrow(disAd$armDf))
-    arm_info <- disAd$armDf %>% 
+    arm_info <- disAd$armDf %>% as.data.frame() %>% select(cohortlabel, drug, arm_type) %>%
       rownames_to_column(var = "ArmID") %>% 
       bind_cols(tibble("armadd" = butns_arminfo)) 
     datatable(arm_info, 
@@ -352,7 +352,7 @@ server <- function(input, output, session) {
   # TABLE 2: table shows cohort arms to enter corresponding biomarkers
   output$dt_table <- renderDataTable({
     butns_biomarker <- create_btns_biomarker(nrow(disAd$armDf))
-    armterm <- disAd$armDf %>% 
+    armterm <- disAd$armDf %>% as.data.frame() %>% select(cohortlabel, drug, arm_type) %>%
       rownames_to_column(var = "ArmID") %>% 
       bind_cols(tibble("Buttons" = butns_biomarker))
     datatable(armterm, 
@@ -576,7 +576,12 @@ server <- function(input, output, session) {
                     jit = input$info_jit,
                     trial_name = input$info_trial_name,
                     
-                    disease_category = input$info_disease_cat
+                    Principal_Investigator = input$info_Principal_Investigator,
+                    
+                 #   disease_category = input$info_disease_cat - commented oct' 27th
+                    disease_category = paste0(input$info_disease_cat, collapse = ",") 
+                 
+                 
       ),
       disease = tibble(summary = input$disSum,
                        details = list(DisTab),
