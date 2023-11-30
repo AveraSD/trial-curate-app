@@ -40,7 +40,7 @@ input_form <- fluidRow(
             selectInput("info_Principal_Investigator", 
                         "6. Principal Investigator",
                         c("Not available","Dr. Andrade Gonzalez", "Dr. Jehangir","Dr. Arneson","Dr. Grow","Dr. Figura","Dr. Murphy","Dr. Mendez-Hernandez", "Dr. Huber", "Dr. Solomon", "Dr. Vaca","Dr. McKean", "Dr. Higgins","Dr. Sanford","Dr. Spanos","Dr. Jameson","Dr. Jones",
-                          "Dr. Rojas-Espaillat", "Dr. Starks","Dr. Bidus","Dr. Merrigan","Dr. Bryan","Dr. Villanueva", "Dr. Conklin"
+                          "Dr. Rojas-Espaillat", "Dr. Starks","Dr. Bidus","Dr. Merrigan","Dr. Bryan","Dr. Villanueva", "Dr. Conklin", "Dr. Lee"
                         ), multiple = F)),
      
      
@@ -102,7 +102,11 @@ secondhalfUI <- fluidPage(
                           "1. Please choose the trial status for the site:",
 
                         #  choices = c("open", "JIT", "open(JIT)", "pending(JIT)","on hold", "closed","coming soon"))),
-                             choices = c("open", "JIT", "In Start Up", "Suspended","open(JIT)", "pending(JIT)","on hold", "closed","coming soon"))),
+                           #  choices = c("open", "JIT", "In Start Up", "Suspended","open(JIT)", "pending(JIT)","on hold", "closed","coming soon"))),
+                        
+                        #revising choices
+                        choices = c("open", "JIT", "start up", "on hold", "closed"))),
+                        
     column(9, textInput("disSum", 
                         "2. Please enter an overall disease summary")),
     br(),
@@ -155,8 +159,8 @@ secondhalfUI <- fluidPage(
       ),
       fluidRow(checkboxGroupInput(
         inputId = "levl_stage", label= "Disease Stage",
-        choices = c("Stage I","Stage II","Stage III","Stage IIIc","Extensive","Stage IV","Stage IVA", "Stage IVB", "Methylated","Un-resectable","resectable",
-                    "Unmethylated","Advanced Stage","Locally Advanced","Neoadjuvant", "Adjuvant","Recurrent","Metastatic","Early stage", "New diagnosis","Neoplasms","Relapsed/Refractory","Post Cellular Therapy",
+        choices = c("Not available","Stage I","Stage II","Stage III","Stage IIIc","Extensive","Stage IV","Stage IVA", "Stage IVB", "Methylated","Un-resectable","resectable",
+                    "Unmethylated","Advanced stage","Advanced/Metastatic","Locally Advanced","Neoadjuvant", "Adjuvant","Recurrent","Metastatic","Early stage", "New diagnosis","Neoplasms","Relapsed/Refractory","Post Cellular Therapy",
                     "Smoldering Myeloma"),inline = T,selected = NULL)
         
       ),

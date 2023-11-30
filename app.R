@@ -579,8 +579,9 @@ server <- function(input, output, session) {
                     Principal_Investigator = input$info_Principal_Investigator,
                     
                  #   disease_category = input$info_disease_cat - commented oct' 27th
-                    disease_category = paste0(input$info_disease_cat, collapse = ",") 
-                 
+                 #   disease_category = paste0(input$info_disease_cat, collapse = ",") 
+                 #changing to semicolon for collapsing
+                 disease_category = paste0(input$info_disease_cat, collapse = ";")
                  
       ),
       disease = tibble(summary = input$disSum,
