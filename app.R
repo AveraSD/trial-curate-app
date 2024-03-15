@@ -600,7 +600,7 @@ server <- function(input, output, session) {
                      type = infoDis$type,
                      phase = infoDis$phase,
                      arm = list(armForBioMk),
-                     docs = HTML(paste(a("eREG",href=input$doc, target="_blank"))),
+                     docs = HTML(paste(a("Protocol",href=input$doc, target="_blank"))),
                      doclastupdate = input$dt,
                      locations = input$loct,
                      min_age = infoDis$min_age,
