@@ -17,7 +17,7 @@ input_form <- fluidRow(
       column(4, 
              selectInput("info_jit", 
                          "3. Trials offered by", 
-                         c("Tempus", "Caris", "Optimal", "Avera Trials", "Avera Trials (Basket)"))),
+                         c("Tempus", "Caris", "Optimal", "Avera Trials", "Avera Trials (Basket)"),selected = "")),
       column(4, 
              textInput("info_trial_name", 
                        "4. Name of the trial")),
@@ -33,7 +33,7 @@ input_form <- fluidRow(
                          "5. Disease category",
                          c("Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other","MedOnc: Lung","MedOnc: Melanoma","MedOnc: Prostate","MedOnc: GU","MedOnc: Renal","MedOnc: GEJ/Gastric", "MedOnc: Pancreas", "MedOnc: Colorectal/Anal","MedOnc: Bladder", "MedOnc: Head & Neck","MedOnc: Brain","MedOnc/Precision: Non-Treatment","MedOnc/Precision: Genomic/Molecular Profiling","Gyn:Breast",
                            "Gyn: Cervical", "Gyn: Endometrial","Gyn: Ovarian","Gyn: Vulva","Gyn/Precision: Non-Treatment","Gyn/Precision: Genomic Profiling", "Precision: Retrospective Chart Review"
-                           ), multiple = T)),
+                           ), selected = "", multiple = T)),
       
       
      column(4, 
@@ -41,7 +41,7 @@ input_form <- fluidRow(
                         "6. Principal Investigator",
                         c("Not available","Dr. Andrade Gonzalez", "Dr. Jehangir","Dr. Arneson","Dr. Grow","Dr. Figura","Dr. Murphy","Dr. Mendez-Hernandez", "Dr. Huber", "Dr. Solomon", "Dr. Vaca","Dr. McKean", "Dr. Higgins","Dr. Sanford","Dr. Spanos","Dr. Jameson","Dr. Jones",
                           "Dr. Rojas-Espaillat", "Dr. Starks","Dr. Bidus","Dr. Merrigan","Dr. Bryan","Dr. Villanueva", "Dr. Conklin", "Dr. Lee"
-                        ), multiple = F)),
+                        ), selected = "", multiple = F)),
      
      
      
@@ -105,10 +105,12 @@ secondhalfUI <- fluidPage(
                            #  choices = c("open", "JIT", "In Start Up", "Suspended","open(JIT)", "pending(JIT)","on hold", "closed","coming soon"))),
                         
                         #revising choices
-                        choices = c("open", "JIT", "start up", "on hold", "closed"))),
+                        choices = c("open", "JIT", "start up", "on hold", "closed"), selected = "")),
                         
     column(9, textInput("disSum", 
                         "2. Please enter an overall disease summary")),
+    
+   
     br(),
     
     ### Text Summary 
@@ -157,13 +159,21 @@ secondhalfUI <- fluidPage(
                selectInput("lev7", "Level7", choices = "", selected = "")
         )
       ),
+      # fluidRow(checkboxGroupInput(
+      #   inputId = "levl_stage", label= "Disease Stage",
+      #   choices = c("Not available","Stage I","Stage II","Stage III","Stage IIIc","Extensive","Stage IV","Stage IVA", "Stage IVB", "Methylated","Un-resectable","resectable",
+      #               "Unmethylated","Advanced stage","Advanced/Metastatic","Locally Advanced","Neoadjuvant", "Adjuvant","Recurrent","Metastatic","Early stage", "New diagnosis","Neoplasms","Relapsed/Refractory","Post Cellular Therapy",
+      #               "Smoldering Myeloma"),inline = T,selected = NULL)
+      #   
+      # ),
       fluidRow(checkboxGroupInput(
         inputId = "levl_stage", label= "Disease Stage",
-        choices = c("Not available","Stage I","Stage II","Stage III","Stage IIIc","Extensive","Stage IV","Stage IVA", "Stage IVB", "Methylated","Un-resectable","resectable",
-                    "Unmethylated","Advanced stage","Advanced/Metastatic","Locally Advanced","Neoadjuvant", "Adjuvant","Recurrent","Metastatic","Early stage", "New diagnosis","Neoplasms","Relapsed/Refractory","Post Cellular Therapy",
+        choices = c("Not available","Stage I","Stage II","Stage III","Stage IIIC","Extensive","Stage IV","Stage IVA", "Stage IVB", "Methylated","Unresectable","Resectable",
+                    "Unmethylated","Advanced","Locally Advanced","Neoadjuvant", "Adjuvant","Recurrent","Metastatic","Early stage", "New diagnosis","Neoplasms","Relapsed/Refractory","Post Cellular Therapy",
                     "Smoldering Myeloma"),inline = T,selected = NULL)
         
       ),
+      
     br(),
     br(),
     actionButton(inputId = "addDis",label = "ADD")
@@ -342,7 +352,13 @@ docuOut <- fluidPage(
   column(6,
   # add  documentation date and trial location
   dateInput(inputId = "dt", label = "Document last updated")),
-  column(6, textInput(inputId = "loct", label = "Location of trial availablity (eg: Sioux Falls, Aberdeen, Pierre, Yankton, Marshall)") )
+  
+  #column(6, textInput(inputId = "loct", label = "Location of trial availablity (eg: Sioux Falls, Aberdeen, Pierre, Yankton, Marshall)") )
+  column(6, 
+         selectInput("loct", 
+                     "Location of trial availablity (eg: Sioux Falls, Aberdeen, Pierre, Yankton, Marshall)", 
+                     choices = c("Sioux Falls", "Aberdeen", "Pierre", "Yankton", "Marshall"), selected = "", multiple = TRUE))
+  
 ))
 
 ##### Panel 5: View Trial
