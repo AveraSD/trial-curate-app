@@ -31,8 +31,8 @@ input_form <- fluidRow(
       column(4, 
              selectInput("info_disease_cat", 
                          "5. Disease category",
-                         c("Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other","MedOnc: Lung","MedOnc: Melanoma","MedOnc: Prostate","MedOnc: GU","MedOnc: Renal","MedOnc: GEJ/Gastric", "MedOnc: Pancreas", "MedOnc: Colorectal/Anal","MedOnc: Bladder", "MedOnc: Head & Neck","MedOnc: Brain","MedOnc/Precision: Non-Treatment","MedOnc/Precision: Genomic/Molecular Profiling","Gyn:Breast",
-                           "Gyn: Cervical", "Gyn: Endometrial","Gyn: Ovarian","Gyn: Vulva","Gyn/Precision: Non-Treatment","Gyn/Precision: Genomic Profiling", "Precision: Retrospective Chart Review"
+                         c("Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other","Heme/Precision: Non-Treatment","MedOnc: Lung","MedOnc: Melanoma","MedOnc: Prostate","MedOnc: GU","MedOnc: Renal","MedOnc: GEJ/Gastric", "MedOnc: Pancreas", "MedOnc: Colorectal/Anal","MedOnc: Bladder", "MedOnc: Head & Neck","MedOnc: Brain","MedOnc: Solid Tumor","MedOnc/Precision: Non-Treatment","MedOnc/Precision: Genomic/Molecular Profiling","Gyn: Breast",
+                           "Gyn: Cervical", "Gyn: Endometrial","Gyn: Ovarian","Gyn: Vulva","Gyn: Solid Tumor","Gyn/Precision: Non-Treatment","Gyn/Precision: Genomic Profiling", "Precision: Retrospective Chart Review"
                            ), selected = "", multiple = T)),
       
       

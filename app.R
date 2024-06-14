@@ -602,7 +602,8 @@ server <- function(input, output, session) {
                      arm = list(armForBioMk),
                      docs = HTML(paste(a("Protocol",href=input$doc, target="_blank"))),
                      doclastupdate = input$dt,
-                     locations = input$loct,
+                  #   locations = input$loct,   << original working for textinput multiple or selectinput single selection
+                     locations = paste0(input$loct,collapse = ";"),
                      min_age = infoDis$min_age,
                      gender = infoDis$gender,
                      link = infoDis$link
