@@ -356,8 +356,8 @@ docuOut <- fluidPage(
   #column(6, textInput(inputId = "loct", label = "Location of trial availablity (eg: Sioux Falls, Aberdeen, Pierre, Yankton, Marshall)") )
   column(6, 
          selectInput("loct", 
-                     "Location of trial availablity (eg: Sioux Falls, Aberdeen, Pierre, Yankton, Marshall)", 
-                     choices = c("Sioux Falls", "Aberdeen", "Pierre", "Yankton", "Marshall"), selected = "", multiple = TRUE))
+                     "Location of trial availablity (eg: Sioux Falls, Aberdeen, Pierre, Yankton, Marshall, Mitchell)", 
+                     choices = c("Sioux Falls", "Aberdeen", "Pierre", "Yankton", "Marshall", "Mitchell"), selected = "", multiple = TRUE))
   
 ))
 
