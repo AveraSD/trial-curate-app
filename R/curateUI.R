@@ -28,13 +28,22 @@ input_form <- fluidRow(
       #                  c("Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other", "Other", "Brain","Breast","Genitourinary", "Gastrointestinal","Gynecology","Head & Neck",
       #                    "Lung","Melanoma","Prostate"))),
      # New with multiple selection oct 27th
-      column(4, 
-             selectInput("info_disease_cat", 
-                         "5. Disease category",
-                         c("Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other","Heme/Precision: Non-Treatment","MedOnc: Lung","MedOnc: Melanoma","MedOnc: Prostate","MedOnc: GU","MedOnc: Renal","MedOnc: GEJ/Gastric", "MedOnc: Pancreas", "MedOnc: Colorectal/Anal","MedOnc: Bladder", "MedOnc: Head & Neck","MedOnc: Brain","MedOnc: Solid Tumor","MedOnc/Precision: Non-Treatment","MedOnc/Precision: Genomic/Molecular Profiling","Gyn: Breast",
-                           "Gyn: Cervical", "Gyn: Endometrial","Gyn: Ovarian","Gyn: Vulva","Gyn: Solid Tumor","Gyn/Precision: Non-Treatment","Gyn/Precision: Genomic Profiling", "Precision: Retrospective Chart Review"
-                           ), selected = "", multiple = T)),
+      # column(4, 
+      #        selectInput("info_disease_cat", 
+      #                    "5. Disease category",
+      #                    c("Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other","Heme/Precision: Non-Treatment","MedOnc: Lung","MedOnc: Melanoma","MedOnc: Prostate","MedOnc: GU","MedOnc: Renal","MedOnc: GEJ/Gastric", "MedOnc: Pancreas", "MedOnc: Colorectal/Anal","MedOnc: Bladder", "MedOnc: Head & Neck","MedOnc: Brain","MedOnc: Solid Tumor","MedOnc/Precision: Non-Treatment","MedOnc/Precision: Genomic/Molecular Profiling","Gyn: Breast",
+      #                      "Gyn: Cervical", "Gyn: Endometrial","Gyn: Ovarian","Gyn: Vulva","Gyn: Solid Tumor","Gyn/Precision: Non-Treatment","Gyn/Precision: Genomic Profiling", "Precision: Retrospective Chart Review"
+      #                      ), selected = "", multiple = T)),
       
+     # Revising disease categories for MedOnc and arranging in alphabetical order
+     column(4, 
+            selectInput("info_disease_cat", 
+                        "5. Disease category",
+                        c("Gyn: Breast",
+                          "Gyn: Cervical", "Gyn: Endometrial","Gyn: Ovarian","Gyn: Vulva","Gyn: Solid Tumor","Gyn/Precision: Non-Treatment","Gyn/Precision: Genomic Profiling","Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other","Heme/Precision: Non-Treatment",
+                          "MedOnc: Anal","MedOnc: Bladder/Urothelial","MedOnc: Brain","MedOnc: Colon","MedOnc: Colorectal","MedOnc: Esophageal","MedOnc: Gastric","MedOnc: GEJ","MedOnc/Precision: Genomic/Molecular Profiing","MedOnc: Head & Neck","MedOnc: Lung","MedOnc: Melanoma","MedOnc/Precision: Non-Treatment","MedOnc : Pancreas","MedOnc: Prostate","MedOnc : Rectal","MedOnc: Renal/Kidney","MedOnc : Solid Tumor",
+                           "Precision: Retrospective Chart Review"
+                        ), selected = "", multiple = T)),
       
      column(4, 
             selectInput("info_Principal_Investigator", 
