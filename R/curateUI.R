@@ -49,7 +49,7 @@ input_form <- fluidRow(
             selectInput("info_Principal_Investigator", 
                         "6. Principal Investigator",
                         c("Not available","Dr. Andrade Gonzalez", "Dr. Jehangir","Dr. Arneson","Dr. Grow","Dr. Figura","Dr. Murphy","Dr. Mendez-Hernandez", "Dr. Huber", "Dr. Solomon", "Dr. Vaca","Dr. McKean", "Dr. Higgins","Dr. Sanford","Dr. Spanos","Dr. Jameson","Dr. Jones",
-                          "Dr. Rojas-Espaillat", "Dr. Starks","Dr. Bidus","Dr. Merrigan","Dr. Bryan","Dr. Villanueva", "Dr. Conklin", "Dr. Lee"
+                          "Dr. Rojas-Espaillat", "Dr. Starks","Dr. Bidus","Dr. Merrigan","Dr. Bryan","Dr. Villanueva", "Dr. Conklin", "Dr. Lee", "Dr. Kirkpatrick"
                         ), selected = "", multiple = F)),
      
      
