@@ -42,14 +42,14 @@ input_form <- fluidRow(
                         c("Gyn: Breast",
                           "Gyn: Cervical", "Gyn: Endometrial","Gyn: Ovarian","Gyn: Vulva","Gyn: Solid Tumor","Gyn/Precision: Non-Treatment","Gyn/Precision: Genomic Profiling","Heme: Lymphoma", "Heme: Leukemia","Heme: Multiple Myeloma","Heme: Other","Heme/Precision: Non-Treatment",
                           "MedOnc: Anal","MedOnc: Bladder/Urothelial","MedOnc: Brain","MedOnc: Colon","MedOnc: Colorectal","MedOnc: Esophageal","MedOnc: Gastric","MedOnc: GEJ","MedOnc/Precision: Genomic/Molecular Profiing","MedOnc: Head & Neck","MedOnc: Lung","MedOnc: Melanoma","MedOnc/Precision: Non-Treatment","MedOnc : Pancreas","MedOnc: Prostate","MedOnc : Rectal","MedOnc: Renal/Kidney","MedOnc : Solid Tumor",
-                           "Precision: Retrospective Chart Review"
+                           "Precision: Retrospective Chart Review","MedOnc: Biliary","MedOnc: Cholangiocarcinoma/Bile Duct"
                         ), selected = "", multiple = T)),
       
      column(4, 
             selectInput("info_Principal_Investigator", 
                         "6. Principal Investigator",
-                        c("Not available","Dr. Andrade Gonzalez", "Dr. Jehangir","Dr. Arneson","Dr. Grow","Dr. Figura","Dr. Murphy","Dr. Mendez-Hernandez", "Dr. Huber", "Dr. Solomon", "Dr. Vaca","Dr. McKean", "Dr. Higgins","Dr. Sanford","Dr. Spanos","Dr. Jameson","Dr. Jones",
-                          "Dr. Rojas-Espaillat", "Dr. Starks","Dr. Bidus","Dr. Merrigan","Dr. Bryan","Dr. Villanueva", "Dr. Conklin", "Dr. Lee", "Dr. Kirkpatrick"
+                        c("Not available","Dr. Andrade-Gonzalez", "Dr. Jehangir","Dr. Arneson","Dr. Grow","Dr. Mendez-Hernandez", "Dr. Huber", "Dr. Solomon", "Dr. Vaca","Dr. McKean", "Dr. Higgins","Dr. Sanford","Dr. Spanos","Dr. Jones",
+                          "Dr. Rojas-Espaillat", "Dr. Starks","Dr. Bidus","Dr. Merrigan","Dr. Bryan","Dr. Villanueva", "Dr. Conklin", "Dr. Lee", "Dr. Kirkpatrick", "Dr. Noldner", "Dr. Upadhyay-Banskota", "Dr. Ammad-Ud-Din", "Dr. Seligman-Coffroth", "Dr. Elsey", "Dr. Meissner", "Dr. Vercel"
                         ), selected = "", multiple = F)),
      
      
